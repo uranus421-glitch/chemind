@@ -24,7 +24,7 @@
 
 ## 覆盖维度 / Dimensions / Abgedeckte Dimensionen
 
-| 维度 Dimension | 工具/源 Tools/Quellen | 
+| 维度 / Dimension / Dimension | 工具/源 / Tools/Sources / Werkzeuge/Quellen |
 |------|------|
 | 📚 学术文献 Academic Literature / Wissenschaftliche Literatur | OpenAlex + Google Scholar + CNKI |
 | 📄 工业 PDF Industrial PDFs / Industrielle PDFs | PyMuPDF (年报/专利) |
@@ -60,7 +60,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 ## 8 个工作流 / 8 Workflows / 8 Arbeitsabläufe
 
-| W# | 名称 / Name | 源 / Source / Quelle | 维度 / Dimension |
+| W# | 名称 / Name / Name | 源 / Source / Quelle | 维度 / Dimension / Dimension |
 |----|------|--------|----------|
 | W1 | OpenAlex | REST API | 2023+ 最新论文 / Latest papers / Neueste Arbeiten |
 | W2 | Google Scholar CDP | CDP Browser (需VPN) | 跨年代高引综述 / High-citation reviews / Hochzitierte Übersichten |
@@ -75,7 +75,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 ## 已验证场景 / Validated Scenarios / Validierte Szenarien
 
-| # | 场景 Scenario Szenario | 维度 | 数据量 |
+| # | 场景 / Scenario / Szenario | 维度 / Dimensions / Dimensionen | 数据量 / Data / Daten |
 |---|------|------|:---:|
 | 1 | PA11/PA1010 长碳链生物基聚酰胺 三源检索 | 文献/专利预判/产业链/产能 | 50篇 |
 | 2 | 华峰化学 241页年报 PyMuPDF 全量提取 | 工业PDF/产能/财务/供应链 | 458KB |
@@ -99,7 +99,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 **30 katalogisierte Fallen** (7 Kategorien). Siehe [[traps-catalog]].
 
-| 最致命 Top Fatal / Tödlichste |
+| 最致命 / Top Fatal / Tödlichste |
 |---|
 | 1. `print()` 中文→崩溃 / crash / Absturz |
 | 2. PS 5.1 而非 7+ → 编码错误 |

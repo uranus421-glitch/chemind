@@ -22,7 +22,7 @@
 
 ## Abgedeckte Dimensionen / 覆盖维度 / Dimensions
 
-| Dimension | Werkzeuge/Quellen |
+| Dimension / 维度 / Dimension | Werkzeuge/Quellen / 工具/源 / Tools/Sources |
 |------|------|
 | 📚 Wissenschaftliche Literatur | OpenAlex + Google Scholar + CNKI |
 | 📄 Industrielle PDFs | PyMuPDF (Geschäftsberichte, Patente) |
@@ -58,7 +58,7 @@ Chemical industry research · bio-based materials · polymer market · productio
 
 ## 8 Arbeitsabläufe / 8 个工作流 / 8 Workflows
 
-| W# | Name | Quelle | Dimension |
+| W# | Name / 名称 / Name | Quelle / 源 / Source | Dimension / 维度 / Dimension |
 |----|------|--------|----------|
 | W1 | OpenAlex | REST API | Neueste Arbeiten (2023+) |
 | W2 | Google Scholar CDP | CDP Browser (VPN in China) | Hochzitierte Übersichten |
@@ -73,7 +73,7 @@ Chemical industry research · bio-based materials · polymer market · productio
 
 ## Validierte Szenarien / 已验证场景 / Validated Scenarios
 
-| # | Szenario | Dimensionen | Daten |
+| # | Szenario / 场景 / Scenario | Dimensionen / 维度 / Dimensions | Daten / 数据量 / Data |
 |---|------|------|:---:|
 | 1 | PA11/PA1010 biobasiertes Polyamid Drei-Quellen-Recherche | Literatur/Patente/Lieferkette/Kapazität | 50 Arbeiten |
 | 2 | Huafon Chemical 241-Seiten Geschäftsbericht PyMuPDF | Industrie-PDF/Kapazität/Finanzen/Lieferkette | 458KB Text |

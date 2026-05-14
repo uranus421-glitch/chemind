@@ -24,7 +24,7 @@
 
 ## Dimensions Covered / 覆盖维度 / Abgedeckte Dimensionen
 
-| Dimension | Tools/Sources |
+| Dimension / 维度 / Dimension | Tools/Sources / 工具/源 / Werkzeuge/Quellen |
 |------|------|
 | 📚 Academic Literature | OpenAlex + Google Scholar + CNKI (three-source dedup) |
 | 📄 Industrial PDFs | PyMuPDF (annual reports, patents) |
@@ -60,7 +60,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 ## 8 Workflows / 8 个工作流 / 8 Arbeitsabläufe
 
-| W# | Name | Source | Dimension |
+| W# | Name / 名称 / Name | Source / 源 / Quelle | Dimension / 维度 / Dimension |
 |----|------|--------|----------|
 | W1 | OpenAlex | REST API | 2023+ latest papers |
 | W2 | Google Scholar CDP | CDP Browser (VPN required in China) | Cross-decade high-citation reviews |
@@ -75,7 +75,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 ## Validated Scenarios / 已验证场景 / Validierte Szenarien
 
-| # | Scenario | Dimensions | Data |
+| # | Scenario / 场景 / Szenario | Dimensions / 维度 / Dimensionen | Data / 数据量 / Daten |
 |---|------|------|:---:|
 | 1 | PA11/PA1010 bio-based polyamide three-source search | Literature/patents/supply chain/capacity | 50 papers |
 | 2 | Huafon Chemical 241-page annual report PyMuPDF | Industrial PDF/capacity/finance/supply chain | 458KB text |
@@ -95,7 +95,7 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 **30 cataloged traps** (7 categories). See [[traps-catalog]].
 
-| Most Fatal |
+| Most Fatal / 最致命 / Tödlichste |
 |---|
 | 1. `print()` Chinese → crash |
 | 2. PS 5.1 instead of 7+ → encoding errors |

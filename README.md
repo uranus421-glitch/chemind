@@ -1,149 +1,177 @@
 # chemind
 
-> 化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill
+> **Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research Claude Code Skill**
+>
+> *化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究*
+>
+> *Mehrdimensionale Tiefenforschung für Chemie- / Biobasierte Materialien / Polymer- / Biowissenschaften*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai)
 [![Version](https://img.shields.io/badge/version-0.2.0-green)]()
 
-[English](README.en.md) | [Deutsch](README.de.md)
+[English](README.en.md) | [中文](README.md) | [Deutsch](README.de.md)
 
 ---
 
-## 定位
+## Positioning / 定位 / Positionierung
 
-`chemind` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链与 AI 驱动材料发现。
+`chemind` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, and AI-driven materials discovery. Now with biopharma / CGT dimension.
+
+`chemind` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链与 AI 驱动材料发现。新增生物制药/细胞基因治疗维度。
+
+`chemind` ist die **Erweiterungsschicht für die chemische/materialbasierte Industrie & Biowissenschaften** auf Basis von `academic-search`. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten und KI-gestützte Materialentdeckung. Jetzt mit Biopharma/CGT-Dimension.
 
 ---
 
-## 安装
+## Installation / 安装 / Installation
 
-### 环境要求
+### Requirements / 环境要求 / Voraussetzungen
 
-| 组件 | 最低版本 | 说明 |
+| Component / 组件 / Komponente | Min Version | Notes / 说明 / Hinweise |
 |------|:---:|------|
-| Python | 3.8+ | PyMuPDF 年报提取、数据去重 |
-| Node.js | 18+ | CDP 浏览器控制（学术搜索核心依赖） |
-| PowerShell | 7+ (**不是** 5.1) | PS 5.1 存在 UTF-8 编码 bug，中文必乱码 |
-| Chrome / Chromium | 最新稳定版 | 远程调试模式（`chrome://inspect`） |
+| Python | 3.8+ | PyMuPDF for annual report extraction / 年报提取 / Geschäftsbericht-Extraktion |
+| Node.js | 18+ | CDP browser control (core academic-search dependency) |
+| PowerShell | 7+ (**not** 5.1) | PS 5.1 has UTF-8 encoding bugs with Chinese / PS 5.1 中文编码 bug / PS 5.1 UTF-8-Fehler |
+| Chrome / Chromium | Latest stable | Remote debugging mode (`chrome://inspect`) |
 
-**平台支持**: Windows 11 ✅ | macOS ✅ | Linux ✅ (WSL2 推荐用于 Windows)
+**Platform**: Windows 11 ✅ | macOS ✅ | Linux ✅ (WSL2 recommended for Windows)
 
-### 一键安装
+### One-Command Install / 一键安装 / Ein-Klick-Installation
 
 ```bash
 bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
 ```
 
-自动完成：技能安装 → academic-search 依赖 → PyMuPDF → 环境检查
+Auto-completes: skill install → academic-search dependency → PyMuPDF → environment check
 
-### 分步安装
+### Step-by-Step / 分步安装 / Schrittweise
 
 ```bash
-# 1. 安装技能
+# 1. Install skill
 npx skills install github:uranus421-glitch/chemind
 
-# 2. 安装 CDP 基础设施
+# 2. Install CDP infrastructure
 npx skills install github:uranus421-glitch/academic-search
 
-# 3. 安装 Python 依赖
+# 3. Install Python dependencies
 pip install PyMuPDF
 
-# 4. 检查环境
+# 4. Verify environment
 bash ~/.claude/skills/chemind/scripts/check-env.sh
 ```
 
-### 验证安装
+### Verification / 验证 / Verifikation
 
-在 Claude Code 中输入以下任一触发词即可激活：
+Type any trigger in Claude Code to activate:
 
+> Chemical industry research · bio-based materials · polymer market · annual reports · biopharma · CDMO · CGT
+>
 > 化工产业研究 · 生物基材料调研 · 聚合物市场 · 上市公司年报 · 生物制药 · CDMO
+>
+> Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Geschäftsberichte · Biopharma
 
 ---
 
-## 覆盖维度
+## Dimensions Covered / 覆盖维度 / Abgedeckte Dimensionen
 
-| 维度 | 工具/数据源 |
+| Dimension / 维度 | Tools / Sources / Quellen |
 |------|------|
-| 📚 学术文献 | OpenAlex + Google Scholar + CNKI 知网 |
-| 📄 工业 PDF | PyMuPDF（年报 / 专利全文提取） |
-| 🏭 市场与产能 | defuddle + WebSearch + CNKI |
-| 🔬 专利 | Google Patents + CNKI 专利库 |
-| 📏 标准与法规 | GB/T, ISO, EU, 限塑令, FDA/EMA |
-| 🔗 产业链 | 研报 + 行业协会 + 年报 |
-| 🤖 AI+材料 | OpenAlex + GS（ML 材料设计） |
-| 🧬 生物制药 | OpenAlex + GS + CNKI（CHO/纯化/AI/CGT/CDMO） |
+| 📚 Academic Literature / 学术文献 / Wissenschaftliche Literatur | OpenAlex + Google Scholar + CNKI |
+| 📄 Industrial PDFs / 工业 PDF / Industrielle PDFs | PyMuPDF (annual reports / patents) |
+| 🏭 Market & Capacity / 市场与产能 / Markt & Kapazität | defuddle + WebSearch + CNKI |
+| 🔬 Patents / 专利 / Patente | Google Patents + CNKI patent database |
+| 📏 Standards & Regulations / 标准与法规 / Normen | GB/T, ISO, EU, China plastic ban, FDA/EMA |
+| 🔗 Supply Chain / 产业链 / Lieferkette | Industry reports + trade associations + annual reports |
+| 🤖 AI + Materials / AI+材料 / KI+Materialien | OpenAlex + GS (ML materials design) |
+| 🧬 Biopharma / 生物制药 / Biopharma | OpenAlex + GS + CNKI (CHO/purification/AI/CGT/CDMO) |
 
 ---
 
-## 8 个工作流
+## 8 Workflows / 8 个工作流 / 8 Arbeitsabläufe
 
-| W# | 名称 | 数据源 | 用途 |
+| W# | Name | Source / 数据源 / Quelle | Purpose / 用途 / Zweck |
 |----|------|--------|------|
-| W1 | OpenAlex | REST API | 2023+ 最新论文 |
-| W2 | Google Scholar CDP | CDP 浏览器（需 VPN） | 跨年代高引综述 |
-| W3 | CNKI 知网 CDP | CDP 浏览器（**禁止 VPN**） | 中文全量 + 学位论文 |
-| W4 | PyMuPDF | PDF 解析器 | 年报 / 专利全文提取 |
-| W5 | 多源合并去重 | Python | 三源去重（DOI > 标题 > 标题+年份） |
-| W6 | 产业情报 | defuddle + scrapling | 市场 / 产能 / 产业链 |
-| W7 | 专利检索 | Google Patents + CNKI | 技术路线 / 竞争格局 |
-| W8 | AI+材料 | OpenAlex + GS | ML 材料设计 / 聚合物信息学 |
+| W1 | OpenAlex | REST API | 2023+ latest papers / 最新论文 / Neueste Arbeiten |
+| W2 | Google Scholar CDP | CDP Browser (VPN required in China) | Cross-decade high-citation reviews / 跨年代高引综述 / Hochzitierte Übersichten |
+| W3 | CNKI CDP | CDP Browser (**NO VPN!**) | Chinese full-text + theses / 中文全量+学位论文 / Chinesischer Volltext |
+| W4 | PyMuPDF | PDF Parser | Annual report / patent extraction / 年报/专利全文 / Geschäftsberichte/Patente |
+| W5 | Merge & Dedup | Python | Three-source dedup (DOI > title > title+year) / 三源去重 |
+| W6 | Industry Intel | defuddle + scrapling | Market / capacity / supply chain / 市场/产能/产业链 |
+| W7 | Patent Search | Google Patents + CNKI | Technology landscape / competitive analysis / 技术路线/竞争格局 |
+| W8 | AI + Materials | OpenAlex + GS | ML materials design / polymer informatics / ML材料设计 |
 
 ---
 
-## 已验证场景
+## Validated Scenarios / 已验证场景 / Validierte Szenarien
 
-| # | 场景 | 维度 | 数据量 |
+| # | Scenario / 场景 / Szenario | Dimensions / 维度 | Data / 数据量 |
 |---|------|------|:---:|
-| 1 | PA11/PA1010 长碳链生物基聚酰胺 三源检索 | 文献/专利预判/产业链/产能 | 50 篇 |
-| 2 | 华峰化学 241 页年报 PyMuPDF 全量提取 | 工业 PDF/产能/财务/供应链 | 458 KB |
-| 3 | RSC Lab on a Chip OA 论文 (44c 连续流) | 学术 OA/微流控纯化/智能下游 | 22 页 |
-| 4 | Frontiers CGT 4.0 OA 论文 (4c) | 学术 OA/CGT/自动化传感器 | 6 页 |
-| 5 | PHA 聚羟基脂肪酸酯 产业全景 | 文献/市场/降解标准/产能 | 85 篇 |
-| 6 | AI + 聚合物材料设计 交叉前沿 | 文献/ML方法/材料信息学/产业 | 291 篇 |
-| 7 | 生物基材料产业全景 三维交叉 | 3方向×10维度综合 | 60 篇 |
-| 8 | Google Scholar 中文引用提取 | "被引用次数：133" 正则 | 全角冒号 Regex |
-| 9 | CNKI 无 VPN 直连 CDP | KNS8 选择器 + SSL 绕过 | 140 条 |
-| 10 | Windows 11 UTF-8 编码根治 | Python/PowerShell/Git Bash | 永久修复 |
-| 11 | 生物制药产业全景 | 文献/工艺/AI/糖基化/CDMO | 41 篇 |
-| 12 | WuXi Biologics 263 页年报 PyMuPDF | 工业 PDF/产能/财务/CDMO | 5 年财务表 |
-| 13 | Samsung Biologics 财务验证 | 跨市场年报(港/韩) + Wikipedia | 2023-2024 |
+| 1 | PA11/PA1010 bio-based polyamide three-source search | Literature / patents / supply chain / capacity | 50 papers |
+| 2 | Huafon Chemical 241-page annual report PyMuPDF extraction | Industrial PDF / capacity / finance / supply chain | 458 KB |
+| 3 | RSC Lab on a Chip OA paper (44c continuous flow) | Academic OA / microfluidics purification / smart downstream | 22 pages |
+| 4 | Frontiers CGT 4.0 OA paper (4c) | Academic OA / CGT / automation sensors | 6 pages |
+| 5 | PHA polyhydroxyalkanoates industry panorama | Literature / market / degradation standards / capacity | 85 hits |
+| 6 | AI + polymer materials design frontier | Literature / ML methods / materials informatics / industry | 291 hits |
+| 7 | Bio-based materials industry panorama 3D cross-analysis | 3 directions × 10 dimensions | 60 papers |
+| 8 | Google Scholar Chinese citation extraction | "被引用次数：133" regex | Full-width colon Regex |
+| 9 | CNKI no-VPN direct CDP pipeline | KNS8 selectors + SSL bypass | 140 hits |
+| 10 | Windows 11 UTF-8 permanent fix | Python / PowerShell / Git Bash | Permanent fix |
+| 11 | Biopharma industry panorama | Literature / process / AI / glycosylation / CDMO | 41 papers |
+| 12 | WuXi Biologics 263-page annual report PyMuPDF | Industrial PDF / capacity / finance / CDMO | 5-year financials |
+| 13 | Samsung Biologics financial verification | Cross-market reports (HK/KR) + Wikipedia | 2023-2024 |
 
 ---
 
-## 已知陷阱（共 30 个，7 类）
+## Known Traps / 已知陷阱 / Bekannte Fallen
 
-1. `print()` 中文 → 崩溃（始终写 UTF-8 文件，不要 print 到控制台）
-2. PS 5.1 而非 7+ → 编码错误（`[建议]` 被误解析为数组操作符）
-3. CNKI + VPN → HTTP 418 封锁（CNKI 必须直连）
-4. CDP `/navigate` 用于 CNKI → URL 参数被截断
-5. GS 引用 Regex 无全角冒号 → 丢失所有中文界面结果
-6. CNKI `.page-next` 失效 → 翻页静默失败
-7. Google Scholar 无 VPN（国内）→ 网站不可达
+**30 cataloged traps** (7 categories). See [traps-catalog](references/traps-catalog.md).
 
-完整目录 → [[traps-catalog]]
+**30 个已编目陷阱** (7 类)。详见 [traps-catalog](references/traps-catalog.md)。
 
----
+**30 katalogisierte Fallen** (7 Kategorien). Siehe [traps-catalog](references/traps-catalog.md).
 
-## 网络说明
-
-- **CNKI 知网**：必须直连（VPN 触发 HTTP 418 反爬）
-- **Google Scholar**（国内用户）：需 VPN，代理 `socks5h://127.0.0.1:10808`
-- **国际用户**：所有数据源可直接访问
-- **CDP 代理**：`http://127.0.0.1:3456`（Chrome 远程调试端口 `9222`）
+| # | Trap / 陷阱 / Falle | Impact / 影响 / Auswirkung |
+|---|------|------|
+| 1 | `print()` Chinese → crash / 崩溃 / Absturz | All Python workflows |
+| 2 | PS 5.1 instead of 7+ / PS 5.1 而非 7+ | `[建议]` parsed as array operator / 编码错误 |
+| 3 | CNKI + VPN → HTTP 418 | CNKI fully blocked / 封锁 / Blockierung |
+| 4 | CDP `/navigate` for CNKI | URL params stripped / 参数截断 |
+| 5 | GS regex without full-width colon | Misses Chinese results / 丢失中文引用 |
+| 6 | CNKI `.page-next` failure | Pagination silently fails / 翻页静默失败 |
+| 7 | GS without VPN (China) | Site unreachable / 不可达 / Nicht erreichbar |
 
 ---
 
-## 触发词
+## Network Notes / 网络说明 / Netzwerk-Hinweise
+
+All ports below are **local-only** (127.0.0.1), never exposed to the internet. Configurable via environment variables.
+
+以下端口均为**本地端口**，不暴露在公网。可通过环境变量配置。
+
+Alle Ports sind **nur lokal**, niemals dem Internet ausgesetzt. Konfigurierbar über Umgebungsvariablen.
+
+- **CNKI**: MUST use direct connection — VPN triggers HTTP 418 anti-bot / 必须直连 / MUSS Direktverbindung nutzen
+- **Google Scholar** (from China): VPN required — `socks5h://127.0.0.1:10808` (default local SOCKS5 proxy) / 需 VPN
+- **CDP Proxy**: `http://127.0.0.1:3456` (default local proxy, connects to Chrome DevTools on port 9222) / CDP 代理默认端口
+- **International users**: All sources directly accessible / 所有源可直接访问 / Alle Quellen direkt zugänglich
+
+---
+
+## Triggers / 触发词 / Auslöser
+
+Chemical industry research · bio-based materials survey · polymer market · production capacity · supply chain analysis · technology landscape · competitive analysis · materials patents · AI materials design · annual report extraction · biopharma · biosimilars · mAb · ADC · cell & gene therapy · CHO culture · CDMO
 
 化工产业研究 · 生物基材料调研 · 聚合物市场 · 产能产量 · 产业链分析 · 技术路线 · 竞争格局 · 材料专利 · AI材料设计 · 上市公司年报 · 生物制药 · 生物类似药 · 单抗 · ADC · 细胞基因治疗 · CHO培养 · CDMO
 
+Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktionskapazität · Lieferkettenanalyse · Technologielandschaft · Materialpatente · KI-Materialdesign · Geschäftsberichte · Biopharma · Biosimilars · mAb · ADC · Zell- & Gentherapie · CHO-Kultur · CDMO
+
 ---
 
-## 许可证
+## License / 许可证 / Lizenz
 
 MIT — [LICENSE](LICENSE)
 
 ---
 
-*chemind v0.2.0 · 化工 / 生物基材料 / 聚合物 / 生命科学*
+*chemind v0.2.0 · Chemical / Bio-Based / Polymer / Life Sciences · 化工 / 生物基 / 聚合物 / 生命科学 · Chemie / Biobasiert / Polymere / Biowissenschaften*

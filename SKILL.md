@@ -1,21 +1,22 @@
 ---
 name: deep-chem
 description: |
-  化工 / 生物基材料 / 聚合物产业的多维度深度研究 Claude Code Skill。
+  化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill。
   覆盖学术文献、专利、市场数据、产能产量、产业链、标准法规与 AI 驱动材料发现。
-  Built on academic-search for CDP infrastructure.
+  新增生命科学/生物制药/细胞基因治疗维度。Built on academic-search for CDP infrastructure.
 
-  Chemical / Bio-Based Materials / Polymer Industry Multi-Dimensional Deep Research Claude Code Skill.
+  Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research.
   Covering academic literature, patents, market data, production capacity, supply chains,
-  standards/regulations, and AI-driven materials discovery. Built on academic-search.
+  standards/regulations, and AI-driven materials discovery. Now with biopharma/CGT dimension.
 
-  Mehrdimensionale Tiefenforschung für Chemie- / Biobasierte Materialien / Polymerindustrie.
-  Deckt wissenschaftliche Literatur, Patente, Marktdaten, Produktionskapazitäten,
-  Lieferketten, Normen und KI-gestützte Materialentdeckung ab.
+  Mehrdimensionale Tiefenforschung für Chemie- / Biobasierte Materialien / Polymer- / Biowissenschaften.
+  Deckt Literatur, Patente, Marktdaten, Produktionskapazitäten, Lieferketten, Normen
+  und KI-gestützte Materialentdeckung ab. Jetzt mit Biopharma/CGT-Dimension.
 
   触发词 / Triggers / Auslöser:
   化工产业研究、生物基材料、聚合物市场、产能产量、产业链分析、
-  材料专利、AI材料设计、技术路线、竞争格局、上市公司年报
+  材料专利、AI材料设计、技术路线、竞争格局、上市公司年报、
+  生物制药、生物类似药、单抗、ADC、细胞基因治疗、CHO培养、CDMO
 metadata:
   version: "0.2.0"
   depends-on: ["academic-search"]
@@ -23,17 +24,17 @@ metadata:
 
 # deep-chem
 
-> **化工 / 生物基材料 / 聚合物产业的多维度深度研究 Claude Code Skill**
+> **化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill**
 >
-> *Chemical / Bio-Based Materials / Polymer Industry Multi-Dimensional Deep Research*
+> *Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research*
 >
-> *Mehrdimensionale Tiefenforschung für Chemie- / Biobasierte Materialien / Polymerindustrie*
+> *Mehrdimensionale Tiefenforschung für Chemie- / Biobasierte Materialien / Polymer- / Biowissenschaften*
 
 ---
 
-Built on `academic-search` for CDP infrastructure. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, and AI-driven materials discovery.
+Built on `academic-search` for CDP infrastructure. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, and AI-driven materials discovery. Now with biopharma / CGT / biologics dimension.
 
-Auf `academic-search` für CDP-Infrastruktur aufgebaut. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten und KI-gestützte Materialentdeckung.
+Auf `academic-search` für CDP-Infrastruktur aufgebaut. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten und KI-gestützte Materialentdeckung. Jetzt mit Biopharma / CGT / Biologics-Dimension.
 
 ---
 
@@ -67,6 +68,12 @@ All sources directly accessible. / 所有源可直接访问。 / Alle Quellen di
 ├─ "市场" / "market" / "Markt" → W6: Industry Intel
 ├─ "专利" / "patents" / "Patente" → W7: Patent Search
 ├─ "AI+材料" / "AI+materials" / "KI+Materialien" → W8: AI + Materials
+├─ "生物药" / "biopharma" / "Biopharma" → W1 → W4 → W6 → merge
+│   ├─ 上游: CHO细胞培养 / 细胞系工程
+│   ├─ 下游: 连续流纯化 / 病毒清除
+│   ├─ AI: PINN混合建模 / 数字孪生
+│   ├─ 分析: 糖基化 / 质量源于设计(QbD)
+│   └─ 产业: CDMO格局 / 生物类似药
 └─ "产业全景" / "industry panorama" / "Branchenpanorama" → ALL → merge
 ```
 
@@ -203,14 +210,17 @@ doc.close()
 |---|------|------|:---:|
 | 1 | **PA11/PA1010 长碳链生物基聚酰胺** 三源检索 | 文献 / 专利预判 / 产业链 / 产能 | 50 篇 |
 | 2 | **华峰化学 241 页年报** PyMuPDF 全量提取 | 工业 PDF / 产能 / 财务 / 供应链 | 458 KB 文本 |
-| 3 | **PHA 聚羟基脂肪酸酯** 产业全景 | 文献 / 市场 / 降解标准 / 产能 / 生态竞争 | 85 篇命中 |
-| 4 | **AI + 聚合物材料设计** 交叉前沿 | 文献 / ML方法 / 材料信息学 / 产业应用 | 291 篇命中 |
-| 5 | **生物基材料产业全景** 三维交叉 | 3方向×10维度综合 | 60 篇精选 + 产能 + 标准 + TRL |
-| 6 | **Google Scholar 中文引用提取** | "被引用次数：133" 正则 | 全角冒号 Regex |
-| 7 | **CNKI 无 VPN 直连 CDP** | KNS8 选择器 + SSL绕过 + 翻页 | 140 条命中 |
-| 8 | **Windows 11 UTF-8 编码根治** | Python / PowerShell / Git Bash | 永久修复 |
+| 3 | **RSC Lab on a Chip OA 论文** PyMuPDF 提取 (44c 连续流) | 学术 OA PDF / 微流控纯化 / 智能下游 | 22 页, 4.1 MB |
+| 4 | **Frontiers CGT 4.0 OA 论文** PyMuPDF 提取 (4c) | 学术 OA PDF / 细胞基因治疗 / 自动化传感器 | 6 页, 854 KB |
+| 5 | **PHA 聚羟基脂肪酸酯** 产业全景 | 文献 / 市场 / 降解标准 / 产能 / 生态竞争 | 85 篇命中 |
+| 6 | **AI + 聚合物材料设计** 交叉前沿 | 文献 / ML方法 / 材料信息学 / 产业应用 | 291 篇命中 |
+| 7 | **生物基材料产业全景** 三维交叉 | 3方向×10维度综合 | 60 篇精选 + 产能 + 标准 + TRL |
+| 8 | **Google Scholar 中文引用提取** | "被引用次数：133" 正则 | 全角冒号 Regex |
+| 9 | **CNKI 无 VPN 直连 CDP** | KNS8 选择器 + SSL绕过 + 翻页 | 140 条命中 |
+| 10 | **Windows 11 UTF-8 编码根治** | Python / PowerShell / Git Bash | 永久修复 |
+| 11 | **生物制药产业全景** 上游+下游+AI+CDMO | 文献 / 工艺 / AI / 糖基化 / 竞争格局 / 交叉材料 | 41 篇命中 / TOP 15 |
 
-### 三方向验证详情 / Three-Direction Validation Details / Details der drei Richtungen
+### 四方向验证详情 / Four-Direction Validation Details / Details der vier Richtungen / Three-Direction Validation Details / Details der drei Richtungen
 
 ```
 方向1: PA11 生物基聚酰胺
@@ -228,6 +238,14 @@ doc.close()
   ├─ OpenAlex ×2: 269+22 hits → 25 篇 TOP
   ├─ 方向: 复合材料ML / 膜设计ML / 高分子逆向设计 / 聚合物信息学
   └─ 代表: BASF/Dow/3M 自建AI材料平台
+
+方向4: 生物制药 / 生物工艺
+  ├─ OpenAlex: 41 hits → 15 篇 TOP (2023-2025)
+  ├─ 上游: CHO细胞建模(9c) / 凋亡自噬调控 / 培养基数据库(MediaAssist)
+  ├─ 下游: 微流控连续流(44c) / 病毒过滤(Planova) / CRISPR支原体检测
+  ├─ AI: PINN混合建模(13c) / CGT 4.0(4c) / 深度学习SERS监测
+  ├─ 分析: N-糖基化制备技术(13c) — 生物类似药一致性关键
+  └─ 产业: 全球CDMO ~$200B, Lonza/WuXi/Samsung主导, ADC最热赛道
 ```
 
 ---
@@ -260,9 +278,10 @@ doc.close()
 | 📄 工业PDF / Industrial PDFs / Industrielle PDFs | PyMuPDF (年报/专利) |
 | 🏭 市场/产能 / Market/Capacity / Markt/Kapazität | defuddle + WebSearch + CNKI |
 | 🔬 专利 / Patents / Patente | Google Patents + CNKI 专利库 |
-| 📏 标准/法规 / Standards / Normen | GB/T, ISO, EU, 中国限塑令 |
+| 📏 标准/法规 / Standards / Normen | GB/T, ISO, EU, 中国限塑令, FDA/EMA |
 | 🔗 产业链 / Supply Chain / Lieferkette | 研报 + 行业协会 + 年报 |
 | 🤖 AI+材料 / AI+Materials / KI+Materialien | OpenAlex + GS (ML材料设计) |
+| 🧬 生物制药 / Biopharma / Biopharma | OpenAlex + GS + CNKI (CHO/纯化/AI/CGT/CDMO) |
 
 ---
 
@@ -280,4 +299,4 @@ doc.close()
 ---
 
 *deep-chem v0.2.0 · Built on academic-search · Validated on Windows 11*
-*化工 / 生物基材料 / 聚合物产业 · Chemical / Bio-Based / Polymer Industry · Chemie / Biobasierte Materialien / Polymerindustrie*
+*化工 / 生物基材料 / 聚合物 / 生命科学产业 · Chemical / Bio-Based / Polymer / Life Sciences Industry · Chemie / Biobasierte Materialien / Polymer- / Biowissenschaften*

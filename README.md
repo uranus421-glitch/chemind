@@ -33,7 +33,7 @@
 
 ```bash
 # 安装
-npx skills install github:uranus421/deep-lit
+npx skills install github:uranus421-glitch/deep-lit
 
 # 验证
 npx skills list | grep deep-lit

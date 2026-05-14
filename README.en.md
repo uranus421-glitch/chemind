@@ -33,7 +33,7 @@ Built on `academic-search` with domain-specific enhancements for polymers, bio-b
 
 ```bash
 # Install
-npx skills install github:uranus421/deep-lit
+npx skills install github:uranus421-glitch/deep-lit
 
 # Verify
 npx skills list | grep deep-lit

@@ -331,7 +331,7 @@ Full catalog: [[traps-catalog]] (28 traps across 7 categories)
 | Chrome | Any recent | Remote debugging enabled |
 | PowerShell | **7+ (NOT 5.1)** | PS 5.1 has UTF-8 bug |
 | PyMuPDF | 1.24+ | `pip install PyMuPDF` |
-| academic-search | latest | `npx skills install github:uranus421/academic-search` |
+| academic-search | latest | `npx skills install github:uranus421-glitch/academic-search` |
 
 Run `bash scripts/check-env.sh` to verify all dependencies.
 

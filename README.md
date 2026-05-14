@@ -107,15 +107,13 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 **30 katalogisierte Fallen** (7 Kategorien). Siehe [[traps-catalog]].
 
-| 最致命 / Top Fatal / Tödlichste |
-|---|
-| 1. `print()` 中文→崩溃 / crash / Absturz |
-| 2. PS 5.1 而非 7+ → 编码错误 |
-| 3. CNKI+VPN → HTTP 418 封锁 |
-| 4. CDP `/navigate` → URL参数截断 |
-| 5. GS Regex 无全角冒号 → 丢失中文引用 |
-| 6. CNKI `.page-next` → 翻页静默失败 |
-| 7. GS 无VPN(国内) → 网站不可达 |
+1. `print()` 中文 → 崩溃 (`print()` Chinese → crash)
+2. PS 5.1 而非 7+ → 编码错误 (PS 5.1 instead of 7+)
+3. CNKI + VPN → HTTP 418 封锁 (HTTP 418 block)
+4. CDP `/navigate` 用于 CNKI → URL 参数截断 (URL params stripped)
+5. GS 引用 Regex 无全角冒号 → 丢失中文结果 (misses Chinese results)
+6. CNKI `.page-next` 失效 → 翻页静默失败 (pagination silently fails)
+7. Google Scholar 无 VPN (国内) → 不可达 (unreachable)
 
 ---
 

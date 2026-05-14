@@ -103,15 +103,13 @@ Chemieindustrieforschung · biobasierte Materialien · Polymermarkt · Produktio
 
 **30 cataloged traps** (7 categories). See [[traps-catalog]].
 
-| Most Fatal / 最致命 / Tödlichste |
-|---|
-| 1. `print()` Chinese → crash |
-| 2. PS 5.1 instead of 7+ → encoding errors |
-| 3. CNKI + VPN → HTTP 418 block |
-| 4. CDP `/navigate` for CNKI → URL params stripped |
-| 5. GS regex without full-width colon → misses Chinese results |
-| 6. CNKI `.page-next` → pagination silently fails |
-| 7. GS without VPN (China) → unreachable |
+1. `print()` Chinese → crash
+2. PS 5.1 instead of 7+ → encoding errors
+3. CNKI + VPN → HTTP 418 block
+4. CDP `/navigate` for CNKI → URL params stripped
+5. GS regex without full-width colon → misses Chinese results
+6. CNKI `.page-next` → pagination silently fails
+7. GS without VPN (China) → unreachable
 
 ---
 

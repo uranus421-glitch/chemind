@@ -101,15 +101,13 @@ Chemical industry research · bio-based materials · polymer market · productio
 
 **30 katalogisierte Fallen** (7 Kategorien). Siehe [[traps-catalog]].
 
-| Tödlichste / Most Fatal / 最致命 |
-|---|
-| 1. `print()` Chinesisch → Absturz |
-| 2. PS 5.1 statt 7+ → Kodierungsfehler |
-| 3. CNKI + VPN → HTTP 418 Blockierung |
-| 4. CDP `/navigate` für CNKI → URL-Parameter abgeschnitten |
-| 5. GS Regex ohne vollbreiten Doppelpunkt → verpasst chinesische Ergebnisse |
-| 6. CNKI `.page-next` → Paginierung schlägt still fehl |
-| 7. GS ohne VPN (China) → nicht erreichbar |
+1. `print()` Chinesisch → Absturz
+2. PS 5.1 statt 7+ → Kodierungsfehler
+3. CNKI + VPN → HTTP 418 Blockierung
+4. CDP `/navigate` für CNKI → URL-Parameter abgeschnitten
+5. GS Regex ohne vollbreiten Doppelpunkt → verpasst chinesische Ergebnisse
+6. CNKI `.page-next` → Paginierung schlägt still fehl
+7. GS ohne VPN (China) → nicht erreichbar
 
 ---
 

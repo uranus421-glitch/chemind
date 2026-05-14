@@ -66,7 +66,7 @@ All sources directly accessible. / 所有源可直接访问。 / Alle Quellen di
 ├─ "最新论文" / "latest papers" / "neueste Arbeiten" → W1: OpenAlex
 ├─ "高引综述" / "high-citation reviews" / "Hochzitierte Übersichten" → W2: GS CDP (需VPN)
 ├─ "知网" / "CNKI" / "CNKI" → W3: CNKI CDP (禁止VPN!)
-├─ "年报" / "annual report" / "Geschäftsbericht" → W4: PyMuPDF
+├─ "年报" / "annual report" / "Geschäftsbericht" → W4: PyMuPDF + W5b: Batch Scraping
 ├─ "市场" / "market" / "Markt" → W6: Industry Intel
 ├─ "专利" / "patents" / "Patente" → W7: Patent Search
 ├─ "AI+材料" / "AI+materials" / "KI+Materialien" → W8: AI + Materials
@@ -206,6 +206,24 @@ doc.close()
 
 ---
 
+## Workflow W5b: Annual Report Batch Scraping / 年报批量爬取
+
+A股(巨潮) / 港股(披露易) / 美股(SEC EDGAR) 年报批量下载与分析。
+Batch download & analysis of annual reports from A-share (CNinfo), HKEX, and SEC EDGAR.
+
+**工具选型 / Tool Selection:**
+
+| 市场 / Market | 首选工具 / Tool | 说明 / Note |
+|------|----------|------|
+| A股 / A-share | AKShare + 巨潮API | 全A股公告，含年报/半年报/季报 / All filings |
+| 港股 / HKEX | ScrapeHKEX + Selenium | 披露易ESG报告 + 年报 / HKEX filings |
+| 美股/中概股 / US/ADR | secedgar | SEC EDGAR 20-F/10-K 下载 |
+
+**PyMuPDF 年报全文提取** → 见 / See / Siehe: [[pymupdf-industrial]]
+**完整手册** → 见 / See / Siehe: [[annual-report-scraping]]
+
+---
+
 ## Validated Scenarios / 已验证场景 / Validierte Szenarien
 
 | # | 场景 / Scenario / Szenario | 维度 / Dimensions / Dimensionen | 数据量 / Data / Daten |
@@ -221,6 +239,8 @@ doc.close()
 | 9 | **CNKI 无 VPN 直连 CDP**<br>*CNKI no-VPN direct CDP pipeline*<br>*CNKI Direktverbindung (ohne VPN) CDP-Pipeline* | KNS8 选择器 + SSL绕过 + 翻页<br>*KNS8 selectors + SSL bypass + pagination*<br>*KNS8-Selektoren + SSL-Umgehung + Paginierung* | 140 条命中<br>*140 hits*<br>*140 Treffer* |
 | 10 | **Windows 11 UTF-8 编码根治**<br>*Windows 11 UTF-8 permanent fix*<br>*Windows 11 UTF-8 permanente Lösung* | Python / PowerShell / Git Bash<br>*Python / PowerShell / Git Bash*<br>*Python / PowerShell / Git Bash* | 永久修复<br>*Permanent fix*<br>*Permanente Lösung* |
 | 11 | **生物制药产业全景** 上游+下游+AI+CDMO<br>*Biopharma industry panorama upstream+downstream+AI+CDMO*<br>*Biopharma Branchenpanorama Upstream+Downstream+AI+CDMO* | 文献/工艺/AI/糖基化/竞争格局/交叉材料<br>*Literature/process/AI/glycosylation/competitive landscape/cross-materials*<br>*Literatur/Prozess/AI/Glykosylierung/Wettbewerb/Cross-Materialien* | 41 篇命中 / TOP 15<br>*41 hits / TOP 15*<br>*41 Treffer / TOP 15* |
+| 12 | **WuXi Biologics 263页年报** PyMuPDF提取<br>*WuXi Biologics 263pp annual report PyMuPDF*<br>*WuXi Biologics 263 S. Geschäftsbericht PyMuPDF* | 工业PDF / 产能 / 财务 / CDMO格局<br>*Industrial PDF / capacity / finance / CDMO landscape*<br>*Industrie-PDF / Kapazität / Finanzen / CDMO-Landschaft* | 5年财务表<br>*5-year financial tables*<br>*5-Jahres-Finanztabellen* |
+| 13 | **Samsung Biologics 财务验证**<br>*Samsung Biologics financial verification*<br>*Samsung Biologics Finanzverifizierung* | 跨市场年报(港/韩) + Wikipedia<br>*Cross-market reports (HKEX/KRX) + Wikipedia*<br>*Marktübergreifende Berichte (HKEX/KRX) + Wikipedia* | 2023-2024 营收/利润<br>*2023-2024 revenue/profit*<br>*2023-2024 Umsatz/Gewinn* |
 
 ### 四方向验证详情 / Four-Direction Validation Details / Details der vier Richtungen
 
@@ -311,6 +331,7 @@ doc.close()
 | [[windows-utf8-fix]] | Windows UTF-8 根治 / permanent fix / permanente Lösung |
 | [[pymupdf-industrial]] | PyMuPDF 工业 PDF 指南 / industrial PDF guide / Industrie-PDF-Anleitung |
 | [[merge-dedup]] | 多源去重合并 / multi-source dedup / Multi-Quellen-Deduplizierung |
+| [[annual-report-scraping]] | 上市公司报告爬取 (A股/港股/美股) / Annual report scraping / Geschäftsbericht-Scraping |
 
 ---
 

@@ -1,0 +1,35 @@
+{
+  "name": "deep-chem",
+  "version": "0.2.0",
+  "description": "化工/生物基材料/聚合物/生命科学产业多维度深度研究 Claude Code Skill — Multi-dimensional deep research for chemical, bio-based materials, polymer & life sciences industries",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "chemistry",
+    "materials-science",
+    "biopharma",
+    "polymer",
+    "academic-search",
+    "literature-review",
+    "patent-search",
+    "annual-report"
+  ],
+  "homepage": "https://github.com/uranus421-glitch/deep-chem",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uranus421-glitch/deep-chem.git"
+  },
+  "license": "MIT",
+  "author": "deep-chem contributors",
+  "scripts": {
+    "check": "bash scripts/check-env.sh",
+    "install:local": "bash install.sh"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "scripts/",
+    "references/"
+  ]
+}

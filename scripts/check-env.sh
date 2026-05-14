@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# check-env.sh — Environment check for deep-lit skill
+# check-env.sh — Environment check for deep-chem skill
 # Verifies: Python3, Node.js, Chrome debug port, CDP proxy
 #
 # Usage: bash check-env.sh
@@ -14,7 +14,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "========================================"
-echo " deep-lit Environment Check"
+echo " deep-chem Environment Check"
 echo "========================================"
 
 FAILURES=0
@@ -95,7 +95,7 @@ if [ -d "$ACADEMIC_SEARCH_DIR" ]; then
     fi
 else
     echo -e "${RED}✗${NC} academic-search: NOT installed"
-    echo "  Install with: npx skills install github:uranus421/academic-search"
+    echo "  Install with: npx skills install github:uranus421-glitch/academic-search"
     echo "  (or the correct academic-search repo URL)"
     FAILURES=$((FAILURES + 1))
 fi
@@ -103,9 +103,9 @@ fi
 echo ""
 echo "========================================"
 if [ $FAILURES -eq 0 ]; then
-    echo -e "${GREEN}All critical checks passed. deep-lit is ready.${NC}"
+    echo -e "${GREEN}All critical checks passed. deep-chem is ready.${NC}"
 else
     echo -e "${RED}${FAILURES} critical failure(s) found.${NC}"
-    echo "Please fix the above issues before using deep-lit."
+    echo "Please fix the above issues before using deep-chem."
 fi
 echo "========================================"

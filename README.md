@@ -39,10 +39,18 @@
 
 ## 快速开始 / Quick Start / Schnellstart
 
+**一键安装 / One-command install:**
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/deep-chem/master/install.sh)
+```
+
+**或分步安装 / Or step by step:**
+
 ```bash
 npx skills install github:uranus421-glitch/deep-chem
-bash scripts/check-env.sh        # 环境检查 / Environment check / Umgebungsprüfung
-pip install PyMuPDF              # Python 依赖 / Python dependency / Python-Abhängigkeit
+bash ~/.claude/skills/deep-chem/scripts/check-env.sh
+pip install PyMuPDF
 npx skills install github:uranus421-glitch/academic-search
 ```
 

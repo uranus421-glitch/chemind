@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# install.sh — deep-chem one-command installer
+# install.sh — chemind one-command installer
 # Usage: bash install.sh
 #
 set -euo pipefail
@@ -11,14 +11,14 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 echo "========================================"
-echo " deep-chem v0.2.0 Installer"
+echo " chemind v0.2.0 Installer"
 echo "========================================"
 echo ""
 
 # 1. Install the skill
-echo -e "${YELLOW}[1/4]${NC} Installing deep-chem skill..."
-npx skills install github:uranus421-glitch/deep-chem
-echo -e "${GREEN}✓${NC} deep-chem installed"
+echo -e "${YELLOW}[1/4]${NC} Installing chemind skill..."
+npx skills install github:uranus421-glitch/chemind
+echo -e "${GREEN}✓${NC} chemind installed"
 echo ""
 
 # 2. Install academic-search dependency (CDP infrastructure)
@@ -38,7 +38,7 @@ echo ""
 
 # 4. Run environment check
 echo -e "${YELLOW}[4/4]${NC} Running environment check..."
-SCRIPTS_DIR="$HOME/.claude/skills/deep-chem/scripts"
+SCRIPTS_DIR="$HOME/.claude/skills/chemind/scripts"
 if [ -f "$SCRIPTS_DIR/check-env.sh" ]; then
     bash "$SCRIPTS_DIR/check-env.sh"
 else
@@ -47,7 +47,7 @@ fi
 
 echo ""
 echo "========================================"
-echo -e "${GREEN} deep-chem installation complete!${NC}"
+echo -e "${GREEN} chemind installation complete!${NC}"
 echo ""
 echo "Quick test: ask Claude '化工产业研究' or"
 echo "'search OpenAlex for bio-based polyamide'"

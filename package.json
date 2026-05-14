@@ -1,5 +1,5 @@
 {
-  "name": "deep-chem",
+  "name": "chemind",
   "version": "0.2.0",
   "description": "化工/生物基材料/聚合物/生命科学产业多维度深度研究 Claude Code Skill — Multi-dimensional deep research for chemical, bio-based materials, polymer & life sciences industries",
   "keywords": [
@@ -14,13 +14,13 @@
     "patent-search",
     "annual-report"
   ],
-  "homepage": "https://github.com/uranus421-glitch/deep-chem",
+  "homepage": "https://github.com/uranus421-glitch/chemind",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uranus421-glitch/deep-chem.git"
+    "url": "https://github.com/uranus421-glitch/chemind.git"
   },
   "license": "MIT",
-  "author": "deep-chem contributors",
+  "author": "chemind contributors",
   "scripts": {
     "check": "bash scripts/check-env.sh",
     "install:local": "bash install.sh"

@@ -1,4 +1,4 @@
-# deep-chem
+# chemind
 
 > 化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill
 
@@ -12,7 +12,7 @@
 
 ## 定位
 
-`deep-chem` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链与 AI 驱动材料发现。
+`chemind` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链与 AI 驱动材料发现。
 
 ---
 
@@ -32,7 +32,7 @@
 ### 一键安装
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/deep-chem/master/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
 ```
 
 自动完成：技能安装 → academic-search 依赖 → PyMuPDF → 环境检查
@@ -41,7 +41,7 @@ bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/deep-chem/mas
 
 ```bash
 # 1. 安装技能
-npx skills install github:uranus421-glitch/deep-chem
+npx skills install github:uranus421-glitch/chemind
 
 # 2. 安装 CDP 基础设施
 npx skills install github:uranus421-glitch/academic-search
@@ -50,7 +50,7 @@ npx skills install github:uranus421-glitch/academic-search
 pip install PyMuPDF
 
 # 4. 检查环境
-bash ~/.claude/skills/deep-chem/scripts/check-env.sh
+bash ~/.claude/skills/chemind/scripts/check-env.sh
 ```
 
 ### 验证安装
@@ -146,4 +146,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*deep-chem v0.2.0 · 化工 / 生物基材料 / 聚合物 / 生命科学*
+*chemind v0.2.0 · 化工 / 生物基材料 / 聚合物 / 生命科学*

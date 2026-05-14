@@ -1,5 +1,5 @@
 ---
-name: deep-chem
+name: chemind
 description: |
   化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill。
   覆盖学术文献、专利、市场数据、产能产量、产业链、标准法规与 AI 驱动材料发现。
@@ -22,7 +22,7 @@ metadata:
   depends-on: ["academic-search"]
 ---
 
-# deep-chem
+# chemind
 
 > **化工 / 生物基材料 / 聚合物 / 生命科学产业的多维度深度研究 Claude Code Skill**
 >
@@ -89,7 +89,7 @@ Kein CDP erforderlich. Kein API-Schlüssel. Keine Ratenbegrenzung.
 
 ```bash
 curl -s "https://api.openalex.org/works?filter=title_and_abstract.search:KEYWORD,publication_year:2023-2026&sort=cited_by_count:desc&per_page=20&select=id,doi,title,publication_date,cited_by_count,authorships,open_access" \
-  -H "User-Agent: deep-chem/0.2.0 (mailto:your@email.com)" \
+  -H "User-Agent: chemind/0.2.0 (mailto:your@email.com)" \
   -o /tmp/oa_results.json
 ```
 
@@ -335,5 +335,5 @@ Batch download & analysis of annual reports from A-share (CNinfo), HKEX, and SEC
 
 ---
 
-*deep-chem v0.2.0 · Built on academic-search · Validated on Windows 11*
+*chemind v0.2.0 · Built on academic-search · Validated on Windows 11*
 *化工 / 生物基材料 / 聚合物 / 生命科学产业 · Chemical / Bio-Based / Polymer / Life Sciences Industry · Chemie / Biobasierte Materialien / Polymer- / Biowissenschaften*

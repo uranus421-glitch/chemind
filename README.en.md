@@ -1,4 +1,4 @@
-# deep-chem
+# chemind
 
 > Multi-dimensional deep research Claude Code Skill for chemical, bio-based materials, polymer & life sciences industries
 
@@ -12,7 +12,7 @@
 
 ## What It Does
 
-`deep-chem` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, and AI-driven materials discovery.
+`chemind` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, and AI-driven materials discovery.
 
 ---
 
@@ -32,7 +32,7 @@
 ### One-Command Install
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/deep-chem/master/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
 ```
 
 This handles: skill install → academic-search dependency → PyMuPDF → environment check.
@@ -41,7 +41,7 @@ This handles: skill install → academic-search dependency → PyMuPDF → envir
 
 ```bash
 # 1. Install the skill
-npx skills install github:uranus421-glitch/deep-chem
+npx skills install github:uranus421-glitch/chemind
 
 # 2. Install CDP infrastructure
 npx skills install github:uranus421-glitch/academic-search
@@ -50,7 +50,7 @@ npx skills install github:uranus421-glitch/academic-search
 pip install PyMuPDF
 
 # 4. Verify environment
-bash ~/.claude/skills/deep-chem/scripts/check-env.sh
+bash ~/.claude/skills/chemind/scripts/check-env.sh
 ```
 
 ### Verify
@@ -146,4 +146,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*deep-chem v0.2.0 · Chemical / Bio-Based Materials / Polymer / Life Sciences*
+*chemind v0.2.0 · Chemical / Bio-Based Materials / Polymer / Life Sciences*

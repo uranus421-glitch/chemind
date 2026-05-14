@@ -1,6 +1,6 @@
 # Traps Catalog — 已知陷阱完全目录
 
-> 28 trapped & documented pitfalls from real-world chemical/materials literature research.
+> 30 trapped & documented pitfalls from real-world chemical/materials industry research.
 > Each trap includes: platform, symptom, root cause, and fix.
 
 ---
@@ -29,7 +29,7 @@
 
 ---
 
-## CNKI 知网 (6 traps)
+## CNKI 知网 (8 traps)
 
 ### CNKI-01: SSL certificate error
 - **Symptom**: `NET::ERR_CERT_COMMON_NAME_INVALID` on `https://www.cnki.net`.
@@ -56,7 +56,17 @@
 - **Root cause**: CNKI anti-scraping throttle.
 - **Fix**: Limit to 10 pages per session, 3-5 second delay between pages.
 
-### CNKI-06: KNS8 homepage search box is custom component
+### CNKI-06: KNS8 pagination `.page-next` returns stale results
+- **Symptom**: Clicking `.page-next` reloads page 1 results.
+- **Root cause**: KNS8 SPA may not update the DOM after AJAX pagination; the selector re-queries the same loaded rows.
+- **Fix**: Use `location.href` with `&page=N` parameter for each page, or manually scroll-trigger lazy load.
+
+### CNKI-07: VPN triggers HTTP 418 anti-bot
+- **Symptom**: `HTTP ERROR 418` on any CNKI request when VPN is active.
+- **Root cause**: CNKI detects VPN/proxy IPs and returns teapot status.
+- **Fix**: **Always use direct connection for CNKI** — no proxy, no VPN. This is the inverse of Google Scholar.
+
+### CNKI-08: KNS8 homepage search box is custom component
 - **Symptom**: Can't `document.querySelector('input[type=text]')` and set value.
 - **Root cause**: `www.cnki.net` uses a custom Web Component, not a native `<input>`.
 - **Fix**: Skip the homepage entirely. Navigate directly to KNS8 result URL with `kw=` parameter.

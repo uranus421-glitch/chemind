@@ -1,48 +1,41 @@
 ---
-name: deep-lit
+name: deep-chem
 description: |
-  化工材料产业文献深度研究专用 Skill。Use when the user asks to search
-  industrial/chemical/materials literature, do industry research on polymers/
-  bio-based materials/chemical engineering, find Chinese papers on CNKI,
-  extract annual reports or patents with PyMuPDF, or merge bilingual
-  (Chinese+English) multi-source search results. Built on top of academic-search
-  for CDP infrastructure. 触发词：产业研究、文献调研、知网、年报提取、材料搜索。
+  化工与生物基材料产业深度研究 Skill。Multi-dimensional industry research
+  covering: academic literature, patents, market data, production capacity,
+  supply chain, standards, and AI-driven materials discovery. Built on
+  academic-search for CDP infrastructure. Triggers: 化工产业研究、生物基材料、
+  聚合物市场、产能产量、产业链分析、材料专利、AI材料设计、技术路线、
+  竞争格局、上市公司年报.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   depends-on: ["academic-search"]
 ---
 
-# deep-lit — 化工材料产业文献深度研究
+# deep-chem — 化工与生物基材料产业深度研究
 
-> Built on `academic-search` for CDP infrastructure. Adds chemical/materials domain knowledge,
-> Chinese literature workflows (CNKI KNS8), industrial PDF extraction (PyMuPDF),
-> and Windows UTF-8 fixes validated in production.
+> Multi-dimensional chemical/bio-based materials industry research.
+> Built on `academic-search` for CDP infrastructure. Goes beyond literature —
+> integrates market data, patents, standards, production capacity, supply chains,
+> and AI-driven materials discovery.
 
 ## Preamble: Network Environment Detection
-
-Before running any workflow, determine the user's network environment:
 
 ### If user is in China (国内)
 
 | Source | Access | Method |
 |--------|--------|--------|
 | OpenAlex | ✅ Direct | `curl` REST API |
-| CNKI 知网 | ✅ Direct | CDP browser |
+| CNKI 知网 | ✅ Direct (NO VPN!) | CDP browser |
 | Google Scholar | ❌ VPN required | CDP + manual browser fallback |
-| Overseas publisher PDFs | ❌ VPN required | `curl --proxy socks5h://127.0.0.1:10808` |
+| Overseas sites | ❌ VPN required | `curl --proxy socks5h://127.0.0.1:10808` |
 
-**VPN prompt**: "⚠️ 此任务需要访问 Google Scholar 和海外学术资源。请开启 VPN 后告诉我，我继续执行检索。"
+**⚠️ CNKI must NOT use VPN** — VPN triggers HTTP 418 anti-bot blocking.
+**⚠️ Google Scholar and overseas sites need VPN** — `socks5h://127.0.0.1:10808`.
 
 ### If user is outside China (国际)
 
-| Source | Access | Method |
-|--------|--------|--------|
-| OpenAlex | ✅ Direct | `curl` |
-| Google Scholar | ✅ Direct | CDP |
-| CNKI | ⚠️ May be slower | CDP (no VPN needed) |
-| Overseas PDFs | ✅ Direct | `curl` / OA download |
-
-Skip VPN prompt. All sources accessible directly.
+All sources directly accessible. CNKI may be slower but no VPN needed.
 
 ---
 
@@ -50,12 +43,14 @@ Skip VPN prompt. All sources accessible directly.
 
 ```
 User request
-├─ "最新论文" / "英文文献" → Workflow W1: OpenAlex
-├─ "高引综述" / "引用数" / "经典文献" → Workflow W2: Google Scholar CDP
-├─ "知网" / "中文文献" / "学位论文" → Workflow W3: CNKI 知网 CDP
-├─ "年报" / "专利PDF" / "提取全文" → Workflow W4: PyMuPDF
-├─ "合并" / "去重" → Reference: merge-dedup
-├─ "文献调研" / "产业研究" / "技术综述" → ALL W1→W2→W3→merge
+├─ "最新论文" / "英文文献" → W1: OpenAlex
+├─ "高引综述" / "引用数" → W2: Google Scholar CDP (需VPN)
+├─ "知网" / "中文文献" / "学位论文" → W3: CNKI CDP (禁止VPN!)
+├─ "年报" / "专利PDF" → W4: PyMuPDF
+├─ "市场数据" / "产能" / "产业链" → W6: Industry Intel (scrapling + defuddle)
+├─ "专利检索" / "技术路线" → W7: Patent Search
+├─ "AI+材料" / "机器学习" → W8: AI + Materials
+├─ "产业全景" / "技术综述" → ALL W1→W2→W3→W6→merge
 └─ "编码错误" / "乱码" → Reference: windows-utf8-fix
 ```
 
@@ -63,137 +58,75 @@ User request
 
 ## Workflow W1: OpenAlex API Search
 
-No CDP required. No API key. No rate limit (polite use: 10 req/s).
-
-### Basic Search
+No CDP required. No API key. No rate limit.
 
 ```bash
-curl -s "https://api.openalex.org/works?filter=title_and_abstract.search:PA11+bio-based+polyamide,publication_year:2024-2026&sort=cited_by_count:desc&per_page=15&select=id,doi,title,publication_date,cited_by_count,authorships,open_access" \
-  -H "User-Agent: deep-lit/0.1.0 (mailto:your@email.com)" \
-  -o results.json
+curl -s "https://api.openalex.org/works?filter=title_and_abstract.search:KEYWORD,publication_year:2023-2026&sort=cited_by_count:desc&per_page=20&select=id,doi,title,publication_date,cited_by_count,authorships,open_access" \
+  -H "User-Agent: deep-chem/0.2.0 (mailto:your@email.com)" \
+  -o /tmp/oa_results.json
 ```
-
-### Key Parameters
 
 | Param | Example | Notes |
 |-------|---------|-------|
-| `filter` | `title_and_abstract.search:KEYWORD` | Space-separated keywords |
-| `publication_year` | `2024-2026` | Year range. Pre-2022 coverage is sparse (trap OA-02) |
-| `sort` | `cited_by_count:desc` | Also: `publication_date:desc`, `relevance` |
-| `per_page` | `15` | Max 200 |
-| `select` | `id,doi,title,...` | Minimize payload size |
-| `open_access` | (in select) | Returns `is_oa`, `oa_url` fields |
+| `filter` | `title_and_abstract.search:KEYWORD` | Space-separated |
+| `publication_year` | `2024-2026` | Pre-2022 sparse (OA-02) |
+| `sort` | `cited_by_count:desc` | Also: `publication_date:desc` |
+| `select` | `id,doi,title,...` | Minimize payload |
 
-### Parsing
-
-```bash
-python3 -c "
-import json
-with open('results.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-for w in data.get('results', []):
-    oa = w.get('open_access', {})
-    print(f'[{w.get(\"cited_by_count\",0)}c] ({w.get(\"publication_date\",\"?\")[:4]}) {w.get(\"title\",\"?\")}')
-    if oa.get('is_oa'):
-        print(f'  OA: {oa.get(\"oa_url\",\"?\")}')
-" results.json
-```
-
-### Traps
-- **OA-01**: Only academic journals — no industry reports or patents
-- **OA-02**: Pre-2022 coverage is sparse
-- **OA-03**: 100k/day rate limit
+**Traps**: OA-01 (only academic journals), OA-02 (pre-2022 sparse), OA-03 (100k/day limit)
 
 ---
 
 ## Workflow W2: Google Scholar CDP Search
 
-Requires CDP proxy from `academic-search`. VPN for users in China.
-
-### Prerequisite: CDP Startup
-
-```bash
-# 1. Open chrome://inspect/#remote-debugging in Chrome → check the box
-# 2. Start/verify CDP
-bash ~/.claude/skills/academic-search/scripts/check-deps.sh
-# Expected: chrome: ok (port 9222) | proxy: ready (port 3456)
-
-# 3. Verify health
-curl -s "http://127.0.0.1:3456/health"
-```
-
-### Search & Extract
+Requires CDP + VPN (China users). See [[scholar-chinese-citations]] for Chinese citation regex.
 
 ```bash
 PROXY="http://127.0.0.1:3456"
-
-# 1. Create tab + search (add &hl=en for English interface)
-T=$(curl -s "$PROXY/new?url=https://scholar.google.com/scholar?q=PA11+bio-based+polyamide&as_ylo=2023&as_yhi=2026&hl=en" \
+T=$(curl -s "$PROXY/new?url=https://scholar.google.com/scholar?q=KEYWORD&as_ylo=2023&hl=en" \
   | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).targetId")
 sleep 3
 
-# 2. Extract results — get raw textContent, filter in Python
 curl -s -X POST "$PROXY/eval?target=$T" -d '
 JSON.stringify(Array.from(document.querySelectorAll(".gs_r.gs_or.gs_scl")).map(el => ({
   allText: el.textContent.slice(0, 600)
-})))
-' -o scholar_results.json
+})))' -o /tmp/gs_results.json
 
-# 3. Parse with Python (regex handles both "Cited by X" and "被引用次数：X")
+# Parse in Python — regex handles both "Cited by X" and "被引用次数：X"
 python3 -c "
 import json, re
-with open('scholar_results.json', 'r', encoding='utf-8') as f:
+with open('/tmp/gs_results.json', 'r') as f:
     data = json.load(f)
-items = json.loads(data['value'])
-for item in items:
-    text = item.get('allText', '')
-    cite = re.search(r'被引用次数[：:]\s*(\d+)|Cited by (\d+)', text)
-    cites = int(cite.group(1) or cite.group(2)) if cite else 0
-    year = re.search(r'\b(20\d{2})\b', text)
-    print(f'[{cites}c] ({year.group(1) if year else \"?\"}) {text[:100]}...')
+for item in json.loads(data['value']):
+    cite = re.search(r'被引用次数[：:]\s*(\d+)|Cited by (\d+)', item['allText'])
+    print(f'[{(cite.group(1) or cite.group(2)) if cite else 0}c] ...')
 "
 
-# 4. Close tab
 curl -s "$PROXY/close?target=$T"
 ```
 
-### Traps
-- **GS-01**: Chinese interface returns `被引用次数：133` (full-width colon)
-- **GS-02**: Citation count is in `<a>` tag, NOT `.gs_fl` text
-- **GS-03**: Don't filter in CDP eval — do it in Python
-- **GS-04**: VPN exit IP may get blocked (403) — fall back to user manual browser search
-
-See [[scholar-chinese-citations]] for detailed regex patterns.
+**Traps**: GS-01~04 (Chinese colons, `<a>` tag citations, JS filter failure, VPN IP block)
 
 ---
 
 ## Workflow W3: CNKI 知网 CDP Search
 
-Requires CDP proxy. Direct access for China users; may be slower internationally.
-
-### Search Flow
+**⚠️ NO VPN — direct connection only.** VPN triggers HTTP 418.
 
 ```bash
 PROXY="http://127.0.0.1:3456"
 
-# 1. Open CNKI via HTTP (avoids SSL cert error CNKI-01)
+# 1. Open via HTTP (avoids SSL CNKI-01)
 CNKI=$(curl -s "$PROXY/new?url=http://www.cnki.net" \
   | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).targetId")
-sleep 4
+sleep 5
 
-# 2. Navigate to KNS8 results page via location.href (avoids CNKI-02)
-#    Chinese keywords MUST be URL-encoded (CNKI-04)
+# 2. Navigate to KNS8 (location.href, not /navigate — CNKI-02)
 curl -s -X POST "$PROXY/eval?target=$CNKI" -d \
-  'location.href = "https://kns.cnki.net/kns8s/defaultresult/index?korder=SU&kw=%E5%B0%BC%E9%BE%991010"' > /dev/null
-sleep 6
+  'location.href = "https://kns.cnki.net/kns8s/defaultresult/index?korder=SU&kw=URL_ENCODED_KEYWORD"' > /dev/null
+sleep 8
 
-# 3. Check for CAPTCHA (CNKI-03)
-curl -s -X POST "$PROXY/eval?target=$CNKI" -d \
-  'document.body?.innerText?.includes("验证")' -o captcha_check.json
-
-# If CAPTCHA → ask user to solve in browser window
-
-# 4. Extract results (KNS8 selectors, validated 2026-05)
+# 3. Extract (KNS8 selectors, validated 2026-05)
 curl -s -X POST "$PROXY/eval?target=$CNKI" -d '
 JSON.stringify({
   totalCount: document.querySelector("#countPageDiv .countText")?.textContent?.trim(),
@@ -204,82 +137,38 @@ JSON.stringify({
     date:    tr.querySelector("td.date")?.textContent?.trim(),
     cites:   tr.querySelector("td.quote a")?.textContent?.trim()
   }))
-})
-' -o cnki_results.json
+})' -o /tmp/cnki_results.json
 
-# 5. Pagination (max 10 pages, 3-5s delay — CNKI-05)
-# Repeat for pages 2-10:
-curl -s -X POST "$PROXY/eval?target=$CNKI" -d \
-  'document.querySelector(".page-next")?.click()' > /dev/null
-sleep 3
-# ... re-extract ...
-
-# 6. Close tab
 curl -s "$PROXY/close?target=$CNKI"
 ```
 
-### KNS8 Selectors Quick-Ref
+**⚠️ Pagination trap**: `.page-next` may return page 1 results. Known KNS8 bug (2026-05).
 
-| Field | Selector |
-|-------|----------|
-| Title | `td.name a` |
-| Authors | `td.author` |
-| Source | `td.source a` |
-| Date | `td.date` |
-| Cites | `td.quote a` |
-| Total count | `#countPageDiv .countText` |
-| Next page | `.page-next` |
+**Traps**: CNKI-01~06 (SSL, `/navigate`, CAPTCHA, URL encoding, 10-page limit, KNS8 search box)
 
-### Traps
-- **CNKI-01**: SSL cert error → HTTP homepage + location.href jump
-- **CNKI-02**: `/navigate` drops URL params → use `location.href`
-- **CNKI-03**: CAPTCHA → user solves in browser (shared session)
-- **CNKI-04**: Chinese keywords → must URL-encode for curl
-- **CNKI-05**: 10-page limit with 3-5s delay
-- **CNKI-06**: Homepage search box is a custom component → skip, use KNS8 URL directly
-
-Full selector reference: [[cnki-kns8-selectors]]
+Full reference: [[cnki-kns8-selectors]]
 
 ---
 
 ## Workflow W4: PyMuPDF Industrial PDF Extraction
 
-For annual reports (年报), patents, and non-academic PDFs.
-
-### Standard Template
-
 ```python
-import fitz
-import tempfile
-import os
+import fitz, tempfile, os
 
-pdf_path = "annual_report.pdf"
-doc = fitz.open(pdf_path)
+doc = fitz.open("report.pdf")
+out = os.path.join(tempfile.gettempdir(), 'pdf_output.txt')
 
-# NEVER print() Chinese — always write to UTF-8 file
-out_path = os.path.join(tempfile.gettempdir(), 'pdf_output.txt')
-with open(out_path, 'w', encoding='utf-8') as f:
+with open(out, 'w', encoding='utf-8') as f:
     for i in range(len(doc)):
-        text = doc[i].get_text()
         f.write(f'\n===== PAGE {i+1} =====\n')
-        f.write(text)
+        f.write(doc[i].get_text())
+        f.flush()  # Memory safety for large PDFs
 
 doc.close()
-print(f"Done: {len(doc)} pages → {out_path}")
+# NEVER print() Chinese — always write to UTF-8 file (PDF-01)
 ```
 
-### Performance
-
-| Type | Pages | Output | Time |
-|------|-------|--------|------|
-| Annual report | 241 | ~458 KB | < 10s |
-| Academic paper | 12 | ~45 KB | < 1s |
-| Patent | 30-80 | ~120 KB | 2-5s |
-
-### Traps
-- **PDF-01**: Never `print()` Chinese — UnicodeEncodeError
-- **PDF-02**: Annual reports lack TOC (`doc.get_toc()` returns `[]`)
-- **PDF-03**: Large PDFs → write page-by-page, don't accumulate in memory
+**Traps**: PDF-01 (no print), PDF-02 (no TOC in annual reports), PDF-03 (OOM on 500+ pages)
 
 Full guide: [[pymupdf-industrial]]
 
@@ -287,20 +176,13 @@ Full guide: [[pymupdf-industrial]]
 
 ## Workflow W5: Multi-Source Merge & Dedup
 
-After running W1+W2+W3, merge results:
-
 ```python
-# Dedup priority: DOI > title[:80] > title+year
-all_papers = []
-seen_keys = set()
-
-for paper in all_sources:
+# Dedup: DOI > title[:80] > title+year
+all_papers, seen = [], set()
+for paper in sources:
     key = paper.get('doi') or paper['title'][:80].lower()
-    if key not in seen_keys:
-        seen_keys.add(key)
-        all_papers.append(paper)
-
-# Sort: GS cites > CNKI cites > OpenAlex cites
+    if key not in seen:
+        seen.add(key); all_papers.append(paper)
 all_papers.sort(key=lambda p: p.get('cites', 0), reverse=True)
 ```
 
@@ -308,15 +190,61 @@ Full implementation: [[merge-dedup]]
 
 ---
 
-## Traps Quick-Ref (Top 5 Most Fatal)
+## Workflow W6: Industry Intelligence (NEW in v0.2)
+
+For market data, production capacity, supply chain, industry news.
+
+```bash
+# Use defuddle for industry news (Chinese sites)
+defuddle parse <url> --md
+
+# Use scrapling-web-research for Reddit/HN/ProductHunt
+# Use WebSearch for market reports, capacity data
+```
+
+### Industry Data Sources
+
+| Type | Source | Method |
+|------|--------|--------|
+| 产能/产量 | 上市公司年报, 行业协会 | W4 PyMuPDF + CNKI |
+| 市场价格 | 生意社, 卓创资讯 | defuddle |
+| 产业链 | 券商研报, 行业白皮书 | WebSearch + CNKI |
+| 标准/法规 | 国家标准网, ISO | WebSearch |
+| 竞争格局 | 年报 + 行业新闻 | defuddle + scrapling |
+
+---
+
+## Workflow W7: Patent Search (NEW in v0.2)
+
+```bash
+# Google Patents (VPN required in China)
+# Or CNKI 专利 database in KNS8 (dbcode=SCOD)
+```
+
+---
+
+## Workflow W8: AI + Materials (NEW in v0.2)
+
+For ML-driven polymer design, property prediction, materials informatics.
+
+```bash
+# OpenAlex with AI/ML keywords
+curl -s "https://api.openalex.org/works?filter=title_and_abstract.search:polymer+machine+learning+property+prediction,publication_year:2023-2026&sort=cited_by_count:desc&per_page=20&select=id,doi,title,publication_date,cited_by_count,open_access"
+```
+
+---
+
+## Traps Quick-Ref (Top 7 Most Fatal)
 
 | # | Trap | Impact |
 |---|------|--------|
 | 1 | `print()` Chinese → crash | All Python workflows fail |
 | 2 | PS 5.1 instead of 7+ | `[建议]` parsed as array operator |
-| 3 | CDP `/navigate` for CNKI | URL params stripped, zero results |
-| 4 | CNKI SSL → HTTPS direct | Chrome blocks with cert error |
-| 5 | GS citation regex without full-width colon | Misses all Chinese-interface results |
+| 3 | CNKI with VPN → HTTP 418 | CNKI entirely blocked |
+| 4 | CDP `/navigate` for CNKI | URL params stripped |
+| 5 | GS citation regex without full-width colon | Misses Chinese-interface results |
+| 6 | CNKI `.page-next` stale results | Pagination silently fails |
+| 7 | Google Scholar without VPN (China) | Site unreachable |
 
 Full catalog: [[traps-catalog]] (28 traps across 7 categories)
 
@@ -326,25 +254,14 @@ Full catalog: [[traps-catalog]] (28 traps across 7 categories)
 
 | Item | Min Version | Notes |
 |------|-----------|-------|
-| Python | 3.10+ | Required for PyMuPDF + merge scripts |
-| Node.js | 22+ | CDP proxy runtime |
+| Python | 3.10+ | PyMuPDF + merge scripts |
+| Node.js | 22+ | CDP proxy |
 | Chrome | Any recent | Remote debugging enabled |
-| PowerShell | **7+ (NOT 5.1)** | PS 5.1 has UTF-8 bug |
+| PowerShell | **7+ (NOT 5.1)** | PS 5.1 UTF-8 bug |
 | PyMuPDF | 1.24+ | `pip install PyMuPDF` |
 | academic-search | latest | `npx skills install github:uranus421-glitch/academic-search` |
 
-Run `bash scripts/check-env.sh` to verify all dependencies.
-
----
-
-## Windows-Specific Notes
-
-1. **Always use `pwsh` not `powershell`**: PS 5.1 UTF-8 bug
-2. **`PYTHONIOENCODING=utf-8` in `~/.bashrc`**: Permanent fix
-3. **Write to file, not console**: `open(path, 'w', encoding='utf-8')`
-4. **Git Bash LANG**: `export LANG=en_US.UTF-8`
-
-Full fix: [[windows-utf8-fix]]
+Run `bash scripts/check-env.sh` to verify.
 
 ---
 
@@ -352,13 +269,13 @@ Full fix: [[windows-utf8-fix]]
 
 | File | Content |
 |------|---------|
-| [[traps-catalog]] | 28 known traps across 7 categories |
+| [[traps-catalog]] | 28 known traps (7 categories) |
 | [[cnki-kns8-selectors]] | CNKI KNS8 DOM selectors (2026-05) |
-| [[scholar-chinese-citations]] | Google Scholar Chinese citation regex |
+| [[scholar-chinese-citations]] | GS Chinese citation regex |
 | [[windows-utf8-fix]] | Windows UTF-8 permanent fix |
 | [[pymupdf-industrial]] | PyMuPDF annual report/patent extraction |
 | [[merge-dedup]] | Multi-source dedup Python code |
 
 ---
 
-*deep-lit v0.1.0 | Built on academic-search | Validated on Windows 11*
+*deep-chem v0.2.0 | Built on academic-search | Validated on Windows 11*

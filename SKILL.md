@@ -935,7 +935,7 @@ Industriecluster-Verteilung, Parkpolitikvergleich, Infrastrukturanalyse, Standor
 | # | Scenario / 场景 / Szenario | Dimensions / 维度 / Dimensionen | Data / 数据量 / Daten |
 |---|------|------|:---:|
 | 1 | **PA11/PA1010 bio-based polyamide** three-source search | Literature / patents / supply chain / capacity | 50 papers |
-| 2 | **Huafon Chemical 241-page annual report** PyMuPDF extraction | Industrial PDF / capacity / finance / supply chain | 458 KB |
+| 2 | **BASF 2024 Annual Report** PyMuPDF extraction | Industrial PDF / capacity / finance / Verbund / supply chain | ~280 pages |
 | 3 | **RSC Lab on a Chip OA paper** (44c continuous flow) | Academic OA / microfluidics purification / smart DSP | 22 pp |
 | 4 | **Frontiers CGT 4.0 OA paper** (4c) | Academic OA / CGT / automation sensors | 6 pp |
 | 5 | **PHA polyhydroxyalkanoates** industry panorama | Literature / market / degradation standards / capacity | 85 hits |
@@ -1092,5 +1092,5 @@ Full catalog / 完整目录 / Vollständiger Katalog: [[traps-catalog]]
 
 ---
 
-*synthon v0.3.0 · Built on academic-search · Validated on Windows 11*
-*Chemical / Bio-Based / Polymer / Life Sciences Industry · 化工 / 生物基材料 / 聚合物 / 生命科学产业 · Chemie / Biobasierte Materialien / Polymer- / Biowissenschaften*
+*synthon v0.3.0 · Built on academic-search · 12 workflows across 4 groups: Literature · PDF · Enterprise · Investment & Strategy*
+*化工 / 材料 / 生物制药 / 能源 / 产业链 / 投资 / 法规 / 产业园区 · Chemical / Materials / Biopharma / Energy / Supply Chain / Investment / Regulations / Clusters*

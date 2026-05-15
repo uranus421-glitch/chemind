@@ -146,7 +146,7 @@ Every workflow validated against real data. Every workflow wurde gegen reale Dat
 | # | Scenario / 场景 | Data / 数据 | Key Insight / 关键洞察 |
 |---|------|:---:|------|
 | 1 | PA11/PA1010 bio-based polyamide | 50 papers | 3-source lit review pipeline |
-| 2 | Huafon Chemical annual report (241pp) | 458 KB | Full financial + capacity extraction |
+| 2 | BASF 2024 annual report | ~280 pp | Financial + capacity + Verbund extraction |
 | 5 | PHA industry panorama | 85 hits | Literature + market + degradation standards |
 | 6 | AI + polymer materials design | 291 hits | Cross-domain ML frontier mapping |
 | 11 | Biopharma industry panorama | 41 papers | CHO/purification/CGT/CDMO |
@@ -240,4 +240,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*synthon v0.3.0 · Built on academic-search · 化工 / 生物基 / 聚合物 / 生命科学*
+*synthon v0.3.0 · Built on academic-search · 化工 / 材料 / 生物制药 / 产业链 / 投资 — 12维产业深度研究引擎*

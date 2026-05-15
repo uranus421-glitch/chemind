@@ -126,7 +126,7 @@ Jeder Workflow gegen reale Daten validiert:
 | # | Szenario | Daten | Schlüsselerkenntnis |
 |---|------|:---:|------|
 | 1 | PA11/PA1010 biobasiertes Polyamid | 50 Arbeiten | 3-Quellen-Literatur-Pipeline |
-| 2 | Huafon Chemical Geschäftsbericht (241 S.) | 458 KB | Vollständige Finanz- & Kapazitätsextraktion |
+| 2 | BASF Geschäftsbericht 2024 | ~280 S. | Finanz- & Kapazitätsextraktion + Verbund |
 | 5 | PHA-Branchenpanorama | 85 Treffer | Literatur + Markt + Abbaunormen |
 | 6 | KI + Polymer-Materialdesign | 291 Treffer | Branchenübergreifendes ML-Frontier-Mapping |
 | 11 | Biopharma-Branchenpanorama | 41 Arbeiten | CHO/Reinigung/CGT/CDMO |
@@ -214,4 +214,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*synthon v0.3.0 · Aufgebaut auf academic-search · Chemie / Biobasiert / Polymere / Biowissenschaften*
+*synthon v0.3.0 · Aufgebaut auf academic-search · Chemie / Materialien / Biopharma / Lieferkette / Investment — 12-Dimensionen Industrie-Tiefenforschungs-Engine*

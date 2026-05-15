@@ -1,6 +1,6 @@
 # Traps Catalog — 已知陷阱完全目录
 
-> 30 trapped & documented pitfalls from real-world chemical/materials industry research.
+> 53 trapped & documented pitfalls from real-world chemical/materials industry research.
 > Each trap includes: platform, symptom, root cause, and fix.
 
 ---
@@ -201,4 +201,137 @@
 
 ---
 
-*Catalog compiled: 2026-05-14 | Source: 6-month real-world chemical/materials literature research*
+## Sogou / Chinese Enterprise Search (3 traps)
+
+### SOG-01: Bing Chinese routing bias
+- **Symptom**: Bing search for Chinese company names returns Japanese travel or unrelated foreign-language results.
+- **Root cause**: Bing tokenizes Chinese company names as city + other terms, and its international routing steers toward non-Chinese content.
+- **Fix**: Always use Sogou for Chinese enterprise/industry search. Bing only as fallback for overseas sites.
+
+### SOG-02: OpenAlex doesn't cover enterprise news
+- **Symptom**: Search for company-university cooperation news returns 0 results on OpenAlex.
+- **Root cause**: OpenAlex only indexes academic publications, not business news, company announcements, or industry-university cooperation reports.
+- **Fix**: Corporate partnerships and enterprise news → W6 (Sogou). Academic literature → W1 (OpenAlex). These are different sources for different content types.
+
+### SOG-03: Sogou snippets > JS-rendered source pages
+- **Symptom**: `curl` cannot get full text from target website (JS-rendered SPA).
+- **Root cause**: Many Chinese industry websites are SPAs / JS-rendered; curl only retrieves the HTML skeleton.
+- **Fix**: The Sogou `cacheresult_summary` div usually contains the article's key information. Don't give up just because the source page is unreachable — the snippet is often sufficient.
+
+---
+
+## Industrial Clusters / Parks (2 traps)
+
+### IPC-01: Park name confusion / 园区名称混淆
+- **Symptom**: "某某高新区" and "某某经开区" are different entities with vastly different policies.
+- **Root cause**: Chinese parks with similar names are governed by different ministries (科技部 for High-Tech Zones, 商务部 for Economic Development Zones, 工信部 for Chemical Parks), each with distinct tax/land policies.
+- **Fix**: When searching, distinguish High-Tech Zone (科技部) / Economic Development Zone (商务部) / Chemical Park (工信部). Verify the park's administrative tier (national/provincial/municipal).
+
+### IPC-02: Park reported figures vs actual operations
+- **Symptom**: Official reports claim park output value of 50 billion but tenant company reported revenues total only 20 billion.
+- **Root cause**: Park promotional data often includes "planned output value" or "target output value" that differs from company annual report figures.
+- **Fix**: Cross-validate: park official site (claims) vs tenant company annual reports (actual capacity × unit price) vs government statistical bulletins.
+
+---
+
+## Patent Search (3 traps)
+
+### PAT-01: Google Patents requires VPN from China
+- **Symptom**: `patents.google.com` unreachable or times out.
+- **Root cause**: Google services blocked in China without VPN.
+- **Fix**: Use CDP browser with VPN enabled, same as Google Scholar (W2). Fallback: WIPO Patentscope for PCT applications (direct access).
+
+### PAT-02: CNKI patent vs literature are different databases
+- **Symptom**: CNKI literature search returns 0 patents, or patent search misses academic papers.
+- **Root cause**: CNKI has separate databases — `dbcode=CJFD` for journals and `dbcode=SCDB` for patents. The search URL parameter differs.
+- **Fix**: For patent search, use `dbcode=SCDB` in the KNS8 URL. For literature, use the default journal database. Do NOT mix search scopes.
+
+### PAT-03: Patent family dedup — same invention in multiple jurisdictions
+- **Symptom**: Same invention appears 5+ times (US, EP, CN, JP, WO) as separate results.
+- **Root cause**: One invention filed in multiple patent offices creates a "patent family" with different publication numbers.
+- **Fix**: Group by priority number (first filing). Google Patents shows family members; use the earliest priority date as the invention date. Dedup by INPADOC family ID when available.
+
+---
+
+## Regulatory Search (3 traps)
+
+### REG-01: Chinese government sites are JS-rendered
+- **Symptom**: `curl` or `WebFetch` returns empty body or spinner placeholder from `.gov.cn` sites.
+- **Root cause**: Many Chinese government portals are SPAs built with React/Vue, requiring JS execution.
+- **Fix**: Use `defuddle` for Chinese government sites (it handles JS rendering). For stubborn sites, fall back to Sogou search with `site:gov.cn` prefix for cached content.
+
+### REG-02: Policy documents are PDFs — not HTML
+- **Symptom**: Search results link to `.pdf` files that can't be parsed by text-based tools.
+- **Root cause**: Official regulations, standards, and policy notices are published as PDF attachments, not web pages.
+- **Fix**: Download the PDF, extract with W4 PyMuPDF pipeline. For Chinese PDFs, always write to UTF-8 file (PDF-01). Search PDF text for effective dates, scope, and numeric limits.
+
+### REG-03: Standard numbering differs across jurisdictions
+- **Symptom**: GB/T 12345 matches ISO 6789 in content but can't be found by cross-referencing the number.
+- **Root cause**: Chinese GB standards may adopt ISO standards with modifications, but numbering systems are independent. GB/T ≠ ISO, GB ≠ EN, HJ ≠ EPA method.
+- **Fix**: Search by subject matter + jurisdiction, not by standard number translation. Cross-reference using adoption statements (e.g., "GB/T XXXX 等同采用 ISO XXXX"). Use CNKI to find papers that compare standards across jurisdictions.
+
+---
+
+## Supply Chain Mapping (3 traps)
+
+### SCM-01: Annual report supplier lists may be redacted
+- **Symptom**: "Top 5 suppliers" section shows only percentages, no names, or names are redacted as "Supplier A/B/C".
+- **Root cause**: Companies cite commercial confidentiality to avoid disclosing supplier identities; some regulators allow aggregated reporting.
+- **Fix**: Cross-reference with industry association member lists, customs trade data (importer/exporter names), and credit rating reports which sometimes name key suppliers. Trade fair exhibitor lists are another source.
+
+### SCM-02: HS codes ≠ company product categories
+- **Symptom**: Searching UN Comtrade by HS code yields trade data that doesn't align with company-reported product segments.
+- **Root cause**: HS (Harmonized System) codes are customs classification for tariff purposes. Company product categories are marketing/business segments. A single HS code may cover multiple product grades, and a single product may require multiple HS codes for its components.
+- **Fix**: Map company products to HS codes using industry-specific concordance tables. For chemicals, CAS number → HS code lookups are more precise. Validate with industry association trade flow reports.
+
+### SCM-03: News capacity figures ≠ annual report figures
+- **Symptom**: News reports claim "Company X broke ground on 100kT/a plant" but annual report lists capacity as 30kT/a.
+- **Root cause**: News reports often cite "planned/design capacity" or "total investment phase capacity" while annual reports disclose "operational/nameplate capacity" per accounting standards. Phased projects may be reported as full scale.
+- **Fix**: Always cross-validate capacity claims: news (announcements) vs annual reports (audited operational figures) vs industry association statistics. Distinguish nameplate (design maximum), operational (current running rate), and planned (future phase) capacity.
+
+---
+
+## Investment Research (4 traps)
+
+### INV-01: Chinese GAAP (CAS) vs IFRS vs US GAAP accounting differences
+- **Symptom**: Revenue recognition, depreciation methods, and R&D capitalization rules differ across markets, making direct financial comparison misleading.
+- **Root cause**: CAS (Chinese Accounting Standards) allows certain treatments (e.g., government subsidies recognized differently, related-party transaction rules) that IFRS and US GAAP handle differently. A-share financials are in CAS, HKEX may use IFRS or HKFRS, SEC requires US GAAP (or IFRS for foreign filers).
+- **Fix**: When cross-comparing Chinese vs international companies, adjust for: (1) R&D capitalization — CAS allows more capitalization than IFRS; (2) government grants — CAS may classify as operating vs non-operating differently; (3) depreciation lives — CAS often uses shorter lives. Use `扣非归母净利润` (deducted non-recurring profit) for A-shares as closer to "core earnings."
+
+### INV-02: Non-recurring items inflate reported profit
+- **Symptom**: Company reports record net profit, but stripping out one-time asset sales reveals an operating loss.
+- **Root cause**: Chinese annual reports prominently display `归母净利润` (net profit attributable to parent), but this includes non-recurring gains like asset disposals, government subsidies, and debt restructuring gains. For chemical companies, government relocation subsidies or carbon credit sales can materially distort earnings.
+- **Fix**: Always use `扣非归母净利润` (deducted non-recurring net profit) as the primary earnings metric. Cross-check the "non-recurring gains/losses" section in the annual report notes. AKShare provides both fields: `归母净利润` and `扣非归母净利润`.
+
+### INV-03: Capacity announcements ≠ audited revenue — utilization rate gap
+- **Symptom**: News reports "Company X built 100kT/a plant" but annual report shows actual production of only 45kT and revenue consistent with ~50kT.
+- **Root cause**: Nameplate capacity (design maximum), operational capacity (current running rate), and actual production are three different numbers. New plants may take 2-3 years to ramp up. Industry downturns reduce utilization. Annual reports disclose actual production volume and utilization rate; news reports cite design capacity.
+- **Fix**: Extract `产能利用率` (capacity utilization rate) from annual reports via W4 PyMuPDF. Formula: actual production ÷ nameplate capacity. Use actual production volume × reported unit price to cross-validate revenue. Never use a single source for capacity claims.
+
+### INV-04: Cross-market valuation comparison requires currency and accounting normalization
+- **Symptom**: Comparing PE ratio of 万华化学 (A-share, CNY) to BASF (Xetra, EUR) without adjustments yields nonsense.
+- **Root cause**: (1) Different accounting standards (CAS vs IFRS) affect earnings calculation; (2) Different fiscal year-ends (Dec 31 vs Mar 31); (3) Currency fluctuations; (4) Different capital structures (Chinese companies tend to have higher leverage); (5) Different tax rates and government subsidy levels.
+- **Fix**: For cross-market comparison: (1) Use EV/EBITDA rather than P/E (capital-structure neutral); (2) Convert to common currency at period-end rate; (3) Normalize for non-recurring items; (4) Compare operating metrics (capacity, utilization, gross margin per ton) as a sanity check on financial multiples.
+
+---
+
+## Annual Report Scraping (3 traps)
+
+### W5b-01: CNinfo API unstable — use Eastmoney fallback
+- **Symptom**: AKShare `stock_zh_a_disclosure_report_cninfo()` returns KeyError or HTTP 500. CNinfo AJAX endpoint returns `{"error":"系统异常"}`.
+- **Root cause**: CNinfo frequently changes internal API endpoints and adds anti-scraping measures. AKShare may lag behind CNinfo changes.
+- **Fix**: Use Eastmoney API (`np-anotice-stock.eastmoney.com/api/security/ann`) as the primary listing source. For PDF download, use multi-path fallback: Sogou search `"{stock} {year}年报 filetype:pdf"` → Eastmoney annpdf API (may return empty) → CNinfo CDP browser → company IR website.
+
+### W5b-02: HKEX披露易 is JS-rendered — CDP required
+- **Symptom**: `curl` or `requests.get()` returns HTML skeleton with no report links. BeautifulSoup finds 0 PDF URLs.
+- **Root cause**: HKEX披露易 is a React SPA. Report listing loaded via AJAX after page render. Direct HTTP only gets the empty template.
+- **Fix**: Use CDP browser (same as W3 CNKI pipeline) to navigate and extract links. Alternative: AKShare `stock_financial_hk_report_em()` for structured financial data (no PDF but covers key metrics).
+
+### W5b-03: secedgar API breaks between versions
+- **Symptom**: `from secedgar import CIKLookup` works in v0.4 but fails in v0.6 with `ImportError`.
+- **Root cause**: secedgar restructured between v0.4→v0.6. `CIKLookup` is now a class in `secedgar.cik_lookup`. `CompanyFilings` requires `cik_lookup` parameter.
+- **Fix**: v0.6+: `from secedgar.cik_lookup import CIKLookup`; `CompanyFilings(cik=..., filing_type=..., cik_lookup=lookup_instance)`. Always check `secedgar.__version__` first.
+
+---
+
+*Catalog compiled: 2026-05-14 (updated 2026-05-15) | Source: 6-month real-world chemical/materials literature research*

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 #
 # check-env.sh — Environment check for chemind skill
-# Verifies: Python3, Node.js, Chrome debug port, CDP proxy
+# Verifies: Python3, Node.js, Chrome debug port, CDP proxy,
+#   PyMuPDF, akshare, secedgar, defuddle
 #
 # Usage: bash check-env.sh
 # Also sources the academic-search check-deps.sh for CDP infrastructure.
@@ -14,7 +15,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "========================================"
-echo " chemind Environment Check"
+echo " chemind v0.3.0 Environment Check"
 echo "========================================"
 
 FAILURES=0
@@ -30,10 +31,32 @@ fi
 
 # --- Python dependencies ---
 if command -v python3 &>/dev/null; then
+    # PyMuPDF
     if python3 -c "import fitz" 2>/dev/null; then
         echo -e "${GREEN}✓${NC} PyMuPDF (fitz): installed"
     else
-        echo -e "${YELLOW}⚠${NC} PyMuPDF (fitz): not installed — run: pip install PyMuPDF"
+        echo -e "${YELLOW}⚠${NC} PyMuPDF (fitz): not installed — run: python3 -m pip install PyMuPDF"
+    fi
+
+    # akshare (A-share financial data)
+    if python3 -c "import akshare" 2>/dev/null; then
+        echo -e "${GREEN}✓${NC} akshare: installed"
+    else
+        echo -e "${YELLOW}⚠${NC} akshare: not installed — run: python3 -m pip install akshare"
+    fi
+
+    # secedgar (SEC EDGAR filings)
+    if python3 -c "import secedgar" 2>/dev/null; then
+        echo -e "${GREEN}✓${NC} secedgar: installed"
+    else
+        echo -e "${YELLOW}⚠${NC} secedgar: not installed — run: python3 -m pip install secedgar"
+    fi
+
+    # requests
+    if python3 -c "import requests" 2>/dev/null; then
+        echo -e "${GREEN}✓${NC} requests: installed"
+    else
+        echo -e "${YELLOW}⚠${NC} requests: not installed — run: python3 -m pip install requests"
     fi
 fi
 
@@ -51,6 +74,13 @@ if command -v npx &>/dev/null; then
     echo -e "${GREEN}✓${NC} npx: available"
 else
     echo -e "${YELLOW}⚠${NC} npx: not found"
+fi
+
+# --- defuddle (npm global) ---
+if command -v defuddle &>/dev/null; then
+    echo -e "${GREEN}✓${NC} defuddle (CLI): installed"
+else
+    echo -e "${YELLOW}⚠${NC} defuddle (CLI): not installed — run: npm install -g defuddle"
 fi
 
 # --- PowerShell 7+ ---
@@ -103,7 +133,7 @@ fi
 echo ""
 echo "========================================"
 if [ $FAILURES -eq 0 ]; then
-    echo -e "${GREEN}All critical checks passed. chemind is ready.${NC}"
+    echo -e "${GREEN}All critical checks passed. chemind v0.3.0 is ready.${NC}"
 else
     echo -e "${RED}${FAILURES} critical failure(s) found.${NC}"
     echo "Please fix the above issues before using chemind."

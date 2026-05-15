@@ -1,7 +1,7 @@
 {
   "name": "chemind",
-  "version": "0.2.0",
-  "description": "化工/生物基材料/聚合物/生命科学产业多维度深度研究 Claude Code Skill — Multi-dimensional deep research for chemical, bio-based materials, polymer & life sciences industries",
+  "version": "0.3.0",
+  "description": "化工/生物基材料/聚合物/生命科学产业多维度深度研究 Claude Code Skill — Multi-dimensional deep research for chemical, bio-based materials, polymer & life sciences industries. 12 workflows: literature, patents, market, supply chain, regulations, AI+industry, investment, industrial clusters.",
   "keywords": [
     "claude-code",
     "skill",
@@ -12,7 +12,12 @@
     "academic-search",
     "literature-review",
     "patent-search",
-    "annual-report"
+    "annual-report",
+    "investment-research",
+    "supply-chain",
+    "industrial-clusters",
+    "regulatory-search",
+    "ai-materials"
   ],
   "homepage": "https://github.com/uranus421-glitch/chemind",
   "repository": {

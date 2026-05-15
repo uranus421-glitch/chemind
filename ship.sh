@@ -6,8 +6,8 @@ set -euo pipefail
 
 MSG="${1:-update}"
 VAULT_DIR="$HOME/OneDrive/Desktop/AI/Obsidian/xinku"
-SKILL_NAME="chemind"
-REPO="uranus421-glitch/$SKILL_NAME"
+SKILL_NAME="synthon"
+REPO="coeus-io/$SKILL_NAME"
 
 echo ">>> 1/3 提交推送..."
 cd "$(dirname "$0")"

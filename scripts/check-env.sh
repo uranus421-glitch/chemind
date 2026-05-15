@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# check-env.sh — Environment check for chemind skill
+# check-env.sh — Environment check for synthon skill
 # Verifies: Python3, Node.js, Chrome debug port, CDP proxy,
 #   PyMuPDF, akshare, secedgar, defuddle
 #
@@ -15,7 +15,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 echo "========================================"
-echo " chemind v0.3.0 Environment Check"
+echo " synthon v0.3.0 Environment Check"
 echo "========================================"
 
 FAILURES=0
@@ -125,7 +125,7 @@ if [ -d "$ACADEMIC_SEARCH_DIR" ]; then
     fi
 else
     echo -e "${RED}✗${NC} academic-search: NOT installed"
-    echo "  Install with: npx skills install github:uranus421-glitch/academic-search"
+    echo "  Install with: npx skills install github:coeus-io/academic-search"
     echo "  (or the correct academic-search repo URL)"
     FAILURES=$((FAILURES + 1))
 fi
@@ -133,9 +133,9 @@ fi
 echo ""
 echo "========================================"
 if [ $FAILURES -eq 0 ]; then
-    echo -e "${GREEN}All critical checks passed. chemind v0.3.0 is ready.${NC}"
+    echo -e "${GREEN}All critical checks passed. synthon v0.3.0 is ready.${NC}"
 else
     echo -e "${RED}${FAILURES} critical failure(s) found.${NC}"
-    echo "Please fix the above issues before using chemind."
+    echo "Please fix the above issues before using synthon."
 fi
 echo "========================================"

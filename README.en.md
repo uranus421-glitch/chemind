@@ -1,4 +1,4 @@
-# chemind
+# synthon
 
 > Multi-dimensional deep research Claude Code Skill for chemical, bio-based materials, polymer & life sciences industries
 
@@ -12,7 +12,7 @@
 
 ## What It Does
 
-`chemind` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, AI-driven materials discovery, investment research, and industrial cluster mapping. Now with biopharma / CGT dimension.
+`synthon` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, AI-driven materials discovery, investment research, and industrial cluster mapping. Now with biopharma / CGT dimension.
 
 ---
 
@@ -32,7 +32,7 @@
 ### One-Command Install
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/coeus-io/synthon/master/install.sh)
 ```
 
 This handles: skill install → academic-search dependency → Python deps (PyMuPDF, akshare, secedgar, defuddle) → environment check.
@@ -41,16 +41,16 @@ This handles: skill install → academic-search dependency → Python deps (PyMu
 
 ```bash
 # 1. Install the skill
-npx skills install github:uranus421-glitch/chemind
+npx skills install github:coeus-io/synthon
 
 # 2. Install CDP infrastructure
-npx skills install github:uranus421-glitch/academic-search
+npx skills install github:coeus-io/academic-search
 
 # 3. Install Python dependencies
 python3 -m pip install PyMuPDF akshare secedgar defuddle requests
 
 # 4. Verify environment
-bash ~/.claude/skills/chemind/scripts/check-env.sh
+bash ~/.claude/skills/synthon/scripts/check-env.sh
 ```
 
 ### Verify
@@ -162,4 +162,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*chemind v0.3.0 · Chemical / Bio-Based Materials / Polymer / Life Sciences*
+*synthon v0.3.0 · Chemical / Bio-Based Materials / Polymer / Life Sciences*

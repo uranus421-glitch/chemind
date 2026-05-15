@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# install.sh — chemind one-command installer
+# install.sh — synthon one-command installer
 # Usage: bash install.sh
 #
 set -euo pipefail
@@ -11,19 +11,19 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 echo "========================================"
-echo " chemind v0.3.0 Installer"
+echo " synthon v0.3.0 Installer"
 echo "========================================"
 echo ""
 
 # 1. Install the skill
-echo -e "${YELLOW}[1/5]${NC} Installing chemind skill..."
-npx skills install github:uranus421-glitch/chemind
-echo -e "${GREEN}✓${NC} chemind installed"
+echo -e "${YELLOW}[1/5]${NC} Installing synthon skill..."
+npx skills install github:coeus-io/synthon
+echo -e "${GREEN}✓${NC} synthon installed"
 echo ""
 
 # 2. Install academic-search dependency (CDP infrastructure)
 echo -e "${YELLOW}[2/5]${NC} Installing academic-search dependency..."
-npx skills install github:uranus421-glitch/academic-search
+npx skills install github:coeus-io/academic-search
 echo -e "${GREEN}✓${NC} academic-search installed"
 echo ""
 
@@ -51,7 +51,7 @@ echo ""
 
 # 5. Run environment check
 echo -e "${YELLOW}[5/5]${NC} Running environment check..."
-SCRIPTS_DIR="$HOME/.claude/skills/chemind/scripts"
+SCRIPTS_DIR="$HOME/.claude/skills/synthon/scripts"
 if [ -f "$SCRIPTS_DIR/check-env.sh" ]; then
     bash "$SCRIPTS_DIR/check-env.sh"
 else
@@ -60,7 +60,7 @@ fi
 
 echo ""
 echo "========================================"
-echo -e "${GREEN} chemind v0.3.0 installation complete!${NC}"
+echo -e "${GREEN} synthon v0.3.0 installation complete!${NC}"
 echo ""
 echo "Quick test: ask Claude '化工产业研究' or"
 echo "'search OpenAlex for bio-based polyamide' or"

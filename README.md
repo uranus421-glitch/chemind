@@ -1,4 +1,4 @@
-# chemind
+# synthon
 
 > **Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research Claude Code Skill**
 >
@@ -16,11 +16,11 @@
 
 ## Positioning / 定位 / Positionierung
 
-`chemind` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, AI-driven materials discovery, investment research, and industrial cluster mapping. Now with biopharma / CGT dimension.
+`synthon` is the **chemical/materials & life sciences industry enhancement layer** on top of `academic-search`. Goes beyond literature — integrates market data, patents, standards, production capacity, supply chains, AI-driven materials discovery, investment research, and industrial cluster mapping. Now with biopharma / CGT dimension.
 
-`chemind` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链、AI 驱动材料发现、投资分析与产业聚集区。新增生物制药/细胞基因治疗维度。
+`synthon` 是 `academic-search` 的**化工材料与生命科学产业增强层**。不止于文献——整合市场数据、专利、标准、产能产量、产业链、AI 驱动材料发现、投资分析与产业聚集区。新增生物制药/细胞基因治疗维度。
 
-`chemind` ist die **Erweiterungsschicht für die chemische/materialbasierte Industrie & Biowissenschaften** auf Basis von `academic-search`. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten, KI-gestützte Materialentdeckung, Investmentanalyse und Industriecluster-Mapping. Jetzt mit Biopharma/CGT-Dimension.
+`synthon` ist die **Erweiterungsschicht für die chemische/materialbasierte Industrie & Biowissenschaften** auf Basis von `academic-search`. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten, KI-gestützte Materialentdeckung, Investmentanalyse und Industriecluster-Mapping. Jetzt mit Biopharma/CGT-Dimension.
 
 ---
 
@@ -40,7 +40,7 @@
 ### One-Command Install / 一键安装 / Ein-Klick-Installation
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/coeus-io/synthon/master/install.sh)
 ```
 
 Auto-completes: skill install → academic-search dependency → Python deps (PyMuPDF, akshare, secedgar, defuddle) → environment check
@@ -49,16 +49,16 @@ Auto-completes: skill install → academic-search dependency → Python deps (Py
 
 ```bash
 # 1. Install skill
-npx skills install github:uranus421-glitch/chemind
+npx skills install github:coeus-io/synthon
 
 # 2. Install CDP infrastructure
-npx skills install github:uranus421-glitch/academic-search
+npx skills install github:coeus-io/academic-search
 
 # 3. Install Python dependencies
 python3 -m pip install PyMuPDF akshare secedgar defuddle requests
 
 # 4. Verify environment
-bash ~/.claude/skills/chemind/scripts/check-env.sh
+bash ~/.claude/skills/synthon/scripts/check-env.sh
 ```
 
 ### Verification / 验证 / Verifikation
@@ -190,4 +190,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*chemind v0.3.0 · Chemical / Bio-Based / Polymer / Life Sciences · 化工 / 生物基 / 聚合物 / 生命科学 · Chemie / Biobasiert / Polymere / Biowissenschaften*
+*synthon v0.3.0 · Chemical / Bio-Based / Polymer / Life Sciences · 化工 / 生物基 / 聚合物 / 生命科学 · Chemie / Biobasiert / Polymere / Biowissenschaften*

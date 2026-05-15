@@ -1,5 +1,5 @@
 {
-  "name": "chemind",
+  "name": "synthon",
   "version": "0.3.0",
   "description": "化工/生物基材料/聚合物/生命科学产业多维度深度研究 Claude Code Skill — Multi-dimensional deep research for chemical, bio-based materials, polymer & life sciences industries. 12 workflows: literature, patents, market, supply chain, regulations, AI+industry, investment, industrial clusters.",
   "keywords": [
@@ -19,13 +19,13 @@
     "regulatory-search",
     "ai-materials"
   ],
-  "homepage": "https://github.com/uranus421-glitch/chemind",
+  "homepage": "https://github.com/coeus-io/synthon",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uranus421-glitch/chemind.git"
+    "url": "https://github.com/coeus-io/synthon.git"
   },
   "license": "MIT",
-  "author": "chemind contributors",
+  "author": "synthon contributors",
   "scripts": {
     "check": "bash scripts/check-env.sh",
     "install:local": "bash install.sh"

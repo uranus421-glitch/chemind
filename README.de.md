@@ -1,4 +1,4 @@
-# chemind
+# synthon
 
 > Mehrdimensionale Tiefenforschung für Chemie-, Biobasierte Materialien-, Polymer- & Biowissenschaften — Claude Code Skill
 
@@ -12,7 +12,7 @@
 
 ## Überblick
 
-`chemind` ist die **Erweiterungsschicht für die chemische/materialbasierte Industrie & Biowissenschaften** auf Basis von `academic-search`. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten, KI-gestützte Materialentdeckung, Investmentanalyse und Industriecluster-Mapping. Jetzt mit Biopharma/CGT-Dimension.
+`synthon` ist die **Erweiterungsschicht für die chemische/materialbasierte Industrie & Biowissenschaften** auf Basis von `academic-search`. Geht über Literatur hinaus — integriert Marktdaten, Patente, Normen, Produktionskapazitäten, Lieferketten, KI-gestützte Materialentdeckung, Investmentanalyse und Industriecluster-Mapping. Jetzt mit Biopharma/CGT-Dimension.
 
 ---
 
@@ -32,7 +32,7 @@
 ### Ein-Kommando-Installation
 
 ```bash
-bash <(curl -sL https://raw.githubusercontent.com/uranus421-glitch/chemind/master/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/coeus-io/synthon/master/install.sh)
 ```
 
 Automatisch: Skill-Installation → academic-search → Python-Abhängigkeiten (PyMuPDF, akshare, secedgar, defuddle) → Umgebungsprüfung.
@@ -41,16 +41,16 @@ Automatisch: Skill-Installation → academic-search → Python-Abhängigkeiten (
 
 ```bash
 # 1. Skill installieren
-npx skills install github:uranus421-glitch/chemind
+npx skills install github:coeus-io/synthon
 
 # 2. CDP-Infrastruktur installieren
-npx skills install github:uranus421-glitch/academic-search
+npx skills install github:coeus-io/academic-search
 
 # 3. Python-Abhängigkeiten installieren
 python3 -m pip install PyMuPDF akshare secedgar defuddle requests
 
 # 4. Umgebung prüfen
-bash ~/.claude/skills/chemind/scripts/check-env.sh
+bash ~/.claude/skills/synthon/scripts/check-env.sh
 ```
 
 ### Verifizierung
@@ -162,4 +162,4 @@ MIT — [LICENSE](LICENSE)
 
 ---
 
-*chemind v0.3.0 · Chemie / Biobasierte Materialien / Polymere / Biowissenschaften*
+*synthon v0.3.0 · Chemie / Biobasierte Materialien / Polymere / Biowissenschaften*

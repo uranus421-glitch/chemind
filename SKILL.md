@@ -1,5 +1,5 @@
 ---
-name: chemind
+name: synthon
 description: |
   Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research.
   Covering academic literature, patents, market data, production capacity, supply chains,
@@ -31,7 +31,7 @@ metadata:
   depends-on: ["academic-search"]
 ---
 
-# chemind
+# synthon
 
 > **Chemical / Bio-Based Materials / Polymer / Life Sciences Industry Multi-Dimensional Deep Research Claude Code Skill**
 >
@@ -117,7 +117,7 @@ Kein CDP erforderlich. Kein API-Schlüssel. Keine Ratenbegrenzung.
 
 ```bash
 curl -s "https://api.openalex.org/works?filter=title_and_abstract.search:KEYWORD,publication_year:2023-2026&sort=cited_by_count:desc&per_page=20&select=id,doi,title,publication_date,cited_by_count,authorships,open_access" \
-  -H "User-Agent: chemind/0.3.0 (mailto:your@email.com)" \
+  -H "User-Agent: synthon/0.3.0 (mailto:your@email.com)" \
   -o /tmp/oa_results.json
 ```
 
@@ -1041,9 +1041,9 @@ Direction 10 / 方向10: Cosmetics Ingredients / 化妆品原料
 
 ## Traps Quick-Ref / 陷阱速查 / Fallen-Schnellreferenz
 
-**48** cataloged traps across 13 categories.
-**48** 个已知陷阱 (13类)。
-**48** katalogisierte Fallen in 13 Kategorien.
+**53** cataloged traps across 16 categories.
+**53** 个已知陷阱 (16类)。
+**53** katalogisierte Fallen in 16 Kategorien.
 
 | # | Trap / 陷阱 / Falle | Impact / 影响 / Auswirkung |
 |---|------|------|
@@ -1082,7 +1082,7 @@ Full catalog / 完整目录 / Vollständiger Katalog: [[traps-catalog]]
 
 | File / 文件 / Datei | Content / 内容 / Inhalt |
 |------|------|
-| [[traps-catalog]] | 48 cataloged traps (13 categories) / 48个已知陷阱 / 48 Fallen |
+| [[traps-catalog]] | 53 cataloged traps (16 categories) / 53个已知陷阱 / 53 Fallen |
 | [[cnki-kns8-selectors]] | CNKI KNS8 DOM selectors / CNKI KNS8 DOM 选择器 / CNKI KNS8 DOM-Selektoren |
 | [[scholar-chinese-citations]] | GS Chinese citation extraction / GS 中文引用提取 / GS Chinesische Zitationsextraktion |
 | [[windows-utf8-fix]] | Windows UTF-8 permanent fix / Windows UTF-8 根治 / Windows UTF-8 permanente Lösung |
@@ -1092,5 +1092,5 @@ Full catalog / 完整目录 / Vollständiger Katalog: [[traps-catalog]]
 
 ---
 
-*chemind v0.3.0 · Built on academic-search · Validated on Windows 11*
+*synthon v0.3.0 · Built on academic-search · Validated on Windows 11*
 *Chemical / Bio-Based / Polymer / Life Sciences Industry · 化工 / 生物基材料 / 聚合物 / 生命科学产业 · Chemie / Biobasierte Materialien / Polymer- / Biowissenschaften*
